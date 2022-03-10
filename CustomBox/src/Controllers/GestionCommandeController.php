@@ -28,7 +28,7 @@ class GestionCommandeController extends Controller{
     }
 
     public function validerCommande(Request $request, Response $response, array $parameters):Response {
-
+        $vue = new ViewRender($this->container);
         if(isset($_SESSION['user'])) {
             $tabProduit = $_SESSION["panier"];
             $poid = 0.0;
@@ -53,14 +53,11 @@ class GestionCommandeController extends Controller{
                     Produit::find($prod['id'])->commandes()->save($commande);
                 }
                 $_SESSION["panier"] = [];
-                $response->withRedirect($this->container->router->pathFor('home'));
+                $response->getBody()->write($vue->afficherMessage("Votre commande a bien était validé!"));
             } else {
-                $vue = new ViewRender($this->container);
-                $vuePanier = new ViewGestionCommande($this->container);
                 $response->getBody()->write($vue->afficherErreur("Trop d'article dans votre panier, aucunes boite ne peut supporter un tel poids..."));
             }
         } else {
-            $vue = new ViewRender($this->container);
             $response->getBody()->write($vue->afficherErreur("Il faut être connecter pour valider votre commande!"));
         }
         return $response;
