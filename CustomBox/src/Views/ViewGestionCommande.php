@@ -46,7 +46,7 @@ class ViewGestionCommande
                 $html .= "<li>" . $this->trouverProduit($value["id"])->titre . "</li>";
             }
             $html.= "<form class='card-footer p-4 pt-0 border-top-0 bg-transparent' action='{$this->container->router->pathFor("validerCommande")}' method='post'> 
-            <button type='submit' class='btn btn-primary'>Valider la commande</button>
+            <button type='submit' class='btn btn-outline-secondary'>Valider la commande</button>
         </form>";
         } else {
             $html.= "Votre panier est vide, retournez à l'accueil pour le compléter";
