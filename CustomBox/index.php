@@ -18,3 +18,5 @@ $container = $app->getContainer();
 
 
 require __DIR__ . '/src/routes.php';
+
+$app -> run();
