@@ -103,6 +103,9 @@ body {
 .li-panier:hover{
   font-size: 120%;
 }
+.txt-err{
+  margin: 1%;
+}
 .centrerImage {
   display: block;
   margin-left: auto;
