@@ -45,15 +45,12 @@ END;
             <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Fonctionnalité Admin</a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li class="dropdown-item"><a class="nav-link" href="{$this->container->router->pathFor("creationProduit")}">Création de produit</a></li>
-    <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("modifierProduit")}">Modification de produits</a></li>
-                                     <li><hr class="dropdown-divider" /></li>
-    <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("creationBoite")}">Création de boite</a></li>
-    <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("modifierBoite")}">Modification de boite</a></li>
+                                                        <li class="dropdown-item"><a class="nav-link" href="{$this->container->router->pathFor("creationProduit")}">Création de produit</a></li>
+                                                        <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("modifierProduit")}">Modification de produits</a></li>
                                                         <li><hr class="dropdown-divider" /></li>
-
-        <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("affichageUser")}">Afficher les utilisateurs</a></li>
-
+                                                        <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("creationBoite")}">Création de boite</a></li>
+                                                        <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("modifierBoite")}">Modification de boite</a></li>
+                                                        <li><hr class="dropdown-divider" /></li>
                                     </ul>
                                 </li>
     
