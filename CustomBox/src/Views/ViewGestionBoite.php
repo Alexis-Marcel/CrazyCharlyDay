@@ -14,7 +14,7 @@ class ViewGestionBoite
 
     }
 
-    public function render(int $code, array $args):string//2-3 pris 2 creation, 3 modif
+    public function render(int $code, array $args):string
     {
         $content = "";
         switch ($code){
