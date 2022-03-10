@@ -6,15 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    protected $table = 'users';
+    protected $table = 'user';
     protected $primaryKey = 'id';
     public $timestamps = false;
 
     protected $fillable = [
         'email',
-        'password'
+        'mpd'
     ];
-
 
     public function removeAccount(){
 

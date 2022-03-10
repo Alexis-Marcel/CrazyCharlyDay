@@ -25,6 +25,12 @@ class ViewGestionProduits
             case 1 :
                 $content = $this->affichageCatalogue($args);
                 break;
+            case 2 :
+                $content = $this->affichageCreation();
+                break;
+            case 3 :
+                $content = $this->affichageModification();
+                break;
             default:
                 throw new \Exception("Code d'affichage innatendu");
                 break;

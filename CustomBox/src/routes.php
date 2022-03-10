@@ -22,6 +22,12 @@ $app->get('/modificationBoite', CustomBox\Controllers\ProduitController::class.'
 $app->post('/modificationBoite', CustomBox\Controllers\ProduitController::class.':modifierBoite')->setName("modifierBoite ");
 
 $app->get('/signin', CustomBox\Controllers\Authentification::class . ':getSignIn')->setName('signin');
+$app->post('/signin', CustomBox\Controllers\Authentification::class . ':postSignIn');
+
+$app->get('/signup', CustomBox\Controllers\Authentification::class . ':getSignUp')->setName('signup');
+$app->post('/signup', CustomBox\Controllers\Authentification::class . ':postSignUp');
+
+$app->get('/signout', CustomBox\Controllers\Authentification::class . ':getSignOut')->setName('signout');
 
 $app->get('/panier', CustomBox\Controllers\GestionCommandeController::class.':afficherPanier')->setName("panier");
 $app->get('/ajouterPanier/{id}', CustomBox\Controllers\GestionCommandeController::class.':ajouterPanier')->setName("ajouterPanier");
