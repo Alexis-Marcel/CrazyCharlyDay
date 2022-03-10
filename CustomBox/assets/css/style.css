@@ -92,6 +92,11 @@ body {
   text-align: center;
   font-family: Garamond, serif;
 }
+.commentaire-div{
+  border: solid;
+  margin: 1%;
+  border-radius: 2% / 50%;
+}
 .panier-titre{
   background-color: #E77441;
   padding: 2%;
@@ -111,7 +116,9 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-
+a{
+  text-decoration:none;
+}
 #bouton-panier{
   margin: 3%;
 }

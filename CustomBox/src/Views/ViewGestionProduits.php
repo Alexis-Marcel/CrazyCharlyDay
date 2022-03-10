@@ -7,22 +7,20 @@ use CustomBox\Views\ViewRender;
 use http\Encoding\Stream\Inflate;
 use Slim\Container;
 
-class ViewGestionProduits
-{
+class ViewGestionProduits {
 
     // ATTRIBUTS
     private $container;
 
     // CONSTRUCTEUR
-    public function __construct(Container $c)
-    {
+    public function __construct(Container $c) {
         $this->container = $c;
     }
 
-    public function render(int $code, array $args):string//2-3 pris 2 creation, 3 modif
+    public function render(int $code, array $args): string//2-3 pris 2 creation, 3 modif
     {
         $content = "";
-        switch ($code){
+        switch ($code) {
             case 1 :
                 $content = $this->affichageCatalogue($args);
                 break;
@@ -43,7 +41,7 @@ class ViewGestionProduits
         return $vue->render($content);
     }
 
-    private function affichageProduit(array $args):string{
+    private function affichageProduit(array $args): string {
         $produit = $args[0];
         //affiche l'item
         $item = <<<END
@@ -68,7 +66,9 @@ END;
 
         //propose de laisser un commentaire
         $formCommentaire = <<<END
-<form action="{$this->container->router->pathFor('ajouterAvis',  ['id' => $produit->id])}" method="post" enctype="multipart/form-data">
+<form action="{$this->container->router->pathFor('ajouterAvis', ['id' => $produit->id])}" method="post" enctype="multipart/form-data">
+                    <div class='div-panier'>
+                    <div class='panier-titre'>
     <label for="note" class="form-label">Note de 0 à 5 :</label>
     <input type="number" step="1" min="0" max="5" id="note" class="form-control" name="note" placeholder="" required><br>
     
@@ -76,32 +76,35 @@ END;
     <input type="text" class="form-control" id="commentaire" name="commentaire" placeholder=""><br>
     <input type="hidden" id="idProduit" name="idProduit" value="$produit->id"><br>
     
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" class="btn btn-outline-secondary">
         Ajouter commentaire
     </button>
+    </div>
+    </div>
 </form>
 END;
 
 
         //affiche les commentaires
         $avisHtml = <<<END
-<div>
-<h3>Commentaires:</h3>
+<div class='div-panier'>
+    <h3>Commentaires:</h3>
+
 END;
 
         $lAvis = $produit->avis;
-        foreach ($lAvis as $unAvis){
+        foreach ($lAvis as $unAvis) {
             $avisHtml .= <<<END
-<div>
+<div class="commentaire-div">
     <h4>Avis de {$unAvis->auteur->email} note : {$unAvis->note}/5</h4>
     <p>{$unAvis->commentaire}</p> 
     <p>Postee le : {$unAvis->date}</p>
 </div>
+</div>
 END;
         }
 
-        $avisHtml.= '</div>';
-
+        $avisHtml .= '</div>';
 
 
         return <<<END
@@ -116,8 +119,7 @@ END;
 
     }
 
-    private function affichageCatalogue(array $args): string
-    {
+    private function affichageCatalogue(array $args): string {
         $args = $args[0];
         $content = <<<END
  <!-- Header-->
@@ -136,15 +138,14 @@ END;
 END;
 
 
-
-        foreach ($args as $prod){
+        foreach ($args as $prod) {
             //$categorie = $prod->categorie->nom;
             $content .= <<<END
 <div class="col mb-5">
     <a href="{$this->container->router->pathFor('afficherProduit', ['id' => $prod->id])}">
         <div class="card h-100">
             <!-- Product image-->
-            <img class="card-img-top" src="{$this->container->router->pathFor("home")}assets/images/produits/{$prod->id}.jpg" alt="..." />
+            <img class="card-img-top" src="{$this->container->router->pathFor("home")}assets/images/produits/{$prod->id}.jpg" alt="..."/>
             <!-- Product details-->
             <div class="card-body p-4">
                 <div class="text-center">
@@ -166,13 +167,12 @@ END;
 END;
         }
         return $content .
-        '</div>
+            '</div>
     </div>
 </section>';
     }
 
-    private function affichageCreation():string
-    {
+    private function affichageCreation(): string {
         return <<<END
             <!DOCTYPE html>
             <html lang="fr">
@@ -235,8 +235,7 @@ END;
         END;
     }
 
-    private function affichageModification():string
-    {
+    private function affichageModification(): string {
         return <<<END
             <!DOCTYPE html>
             <html lang="fr">
