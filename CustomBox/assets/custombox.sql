@@ -204,6 +204,10 @@ ALTER TABLE `produitCommande`
     ADD CONSTRAINT `produitCommande_ibfk_1` FOREIGN KEY (`idProduit`) REFERENCES `produit` (`id`),
     ADD CONSTRAINT `produitCommande_ibfk_2` FOREIGN KEY (`idCommande`) REFERENCES `commande` (`id`);
 
+--
+-- Ajout de la table avis
+--
+
 CREATE TABLE `avis` (
   `id` int(11) NOT NULL,
   `idProduit` int(11) NOT NULL,
