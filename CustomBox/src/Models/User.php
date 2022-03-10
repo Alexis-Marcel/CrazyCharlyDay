@@ -22,4 +22,8 @@ class User extends Model
 
     }
 
+    public function commandes() {
+        return $this->hasMany('\CustomBox\Models\Commande', 'idUser');
+    }
+
 }
