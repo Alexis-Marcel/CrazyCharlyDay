@@ -31,7 +31,7 @@ class BoiteController extends Controller{
         $vueRender = new ViewRender($this->container);
         if ($request->isPost()){
             $taille = filter_var( $request->getParsedBody()['titre'], FILTER_SANITIZE_STRING);
-            $poidsmax = filter_var( $request->getParsedBody()['taille'], FILTER_SANITIZE_NUMBER_INT);
+            $poidsmax = filter_var( $request->getParsedBody()['taille'], FILTER_SANITIZE_NUMBER_FLOAT);
 
             $parameters['taille']=$taille;
             $parameters['poidsmax']=$poidsmax;
