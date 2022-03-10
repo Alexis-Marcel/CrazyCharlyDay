@@ -32,6 +32,8 @@ $app->get('/signout', CustomBox\Controllers\Authentification::class . ':getSignO
 $app->get('/editCompte', CustomBox\Controllers\Authentification::class . ':getEditCompte')->setName('editCompte');
 $app->post('/editCompte', CustomBox\Controllers\Authentification::class . ':postEditCompte');
 
+$app->get('/affichageUser', CustomBox\Controllers\AffichageUsers::class . ':getAffichage')->setName('affichageUser');
+
 
 $app->get('/panier', CustomBox\Controllers\GestionCommandeController::class.':afficherPanier')->setName("panier");
 $app->get('/ajouterPanier/{id}', CustomBox\Controllers\GestionCommandeController::class.':ajouterPanier')->setName("ajouterPanier");
