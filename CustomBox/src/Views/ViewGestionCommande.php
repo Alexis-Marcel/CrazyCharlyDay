@@ -40,14 +40,14 @@ class ViewGestionCommande
         if (isset($_SESSION["panier"])) {
             $tab = $_SESSION["panier"];
         }
-        $html = "<h2>Votre panier:</h2><ul>";
+        $html = '<div class="div-panier"><h2>Votre panier :</h2><ul>';
         if ($tab!=null){
             foreach ($tab as $value) {
                 $html .= "<li>" . $this->trouverProduit($value["id"])->titre . "</li>";
             }
             $html.= "<form class='card-footer p-4 pt-0 border-top-0 bg-transparent' action='{$this->container->router->pathFor("validerCommande")}' method='post'> 
             <button type='submit' class='btn btn-outline-secondary'>Valider la commande</button>
-        </form>";
+        </form></div>";
         } else {
             $html.= "Votre panier est vide, retournez à l'accueil pour le compléter";
         }

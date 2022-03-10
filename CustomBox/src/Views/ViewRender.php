@@ -57,6 +57,7 @@ class ViewRender
         $connexion .= <<<END
                 </ul>
         END;
+        $nbArticle=count($_SESSION["panier"]);
         return <<<END
         <!DOCTYPE html>
         <html lang="fr">
@@ -91,6 +92,7 @@ class ViewRender
                                 <button class="btn btn-outline-secondary" type="submit">
                                     <i class="bi bi-box"></i>
                                     Cart
+                                    <span class="badge bg-dark text-white ms-1 rounded-pill">$nbArticle</span>
                                 </button>
                             </form>
                         </div>

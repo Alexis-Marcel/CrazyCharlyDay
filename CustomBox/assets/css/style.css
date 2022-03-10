@@ -88,7 +88,10 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
+.div-panier{
+  text-align: center;
+  font-family: Garamond, serif;
+}
 hr {
   margin: 1rem 0;
   color: inherit;
