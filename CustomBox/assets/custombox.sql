@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `boite`
 --
 
-CREATE TABLE `boite` (
+CREATE OR REPLACE TABLE `boite` (
   `id` int(11) NOT NULL,
   `taille` text NOT NULL,
   `poidsmax` float NOT NULL
@@ -48,7 +48,7 @@ INSERT INTO `boite` (`id`, `taille`, `poidsmax`) VALUES
 -- Structure de la table `categorie`
 --
 
-CREATE TABLE `categorie` (
+CREATE OR REPLACE TABLE `categorie` (
   `id` int(11) NOT NULL,
   `nom` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -70,7 +70,7 @@ INSERT INTO `categorie` (`id`, `nom`) VALUES
 -- Structure de la table `produit`
 --
 
-CREATE TABLE `produit` (
+CREATE OR REPLACE TABLE `produit` (
   `id` int(11) NOT NULL,
   `titre` text NOT NULL,
   `description` text NOT NULL,
@@ -159,7 +159,7 @@ ALTER TABLE `produit`
 --
 -- Ajout table User
 --
-create table `user`
+create OR REPLACE table `user`
 (
     id    int(11) PRIMARY KEY,
     email varchar(100) NOT NULL,
@@ -176,7 +176,7 @@ COMMIT;
 -- Ajout table Commande et ProduitCommande
 --
 
-create table `commande`
+create OR REPLACE table `commande`
 (
     id      int(11) PRIMARY KEY,
     idUser  int(11),
@@ -191,7 +191,7 @@ ALTER TABLE `commande`
     ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`),
     ADD CONSTRAINT `commande_ibfk_2` FOREIGN KEY (`idBoite`) REFERENCES `boite` (`id`);
 
-create table `produitCommande`
+create OR REPLACE table `produitCommande`
 (
     idProduit  int(11),
     idCommande int(11)
@@ -200,3 +200,23 @@ create table `produitCommande`
 ALTER TABLE `produitCommande`
     ADD CONSTRAINT `produitCommande_ibfk_1` FOREIGN KEY (`idProduit`) REFERENCES `produit` (`id`),
     ADD CONSTRAINT `produitCommande_ibfk_2` FOREIGN KEY (`idCommande`) REFERENCES `commande` (`id`);
+
+CREATE OR REPLACE TABLE `avis` (
+  `id` int(11) NOT NULL,
+  `idProduit` int(11) NOT NULL,
+  `auteur` int(11) NOT NULL,
+  `note` int(1) NOT NULL,
+  `commentaire` text NOT NULL,
+  `date` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+ALTER TABLE `avis`
+    ADD PRIMARY KEY (`id`),
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+    ADD CONSTRAINT `avis_ibfk_1` FOREIGN KEY (`idProduit`) REFERENCES `produit` (`id`),
+    ADD CONSTRAINT `avis_ibfk_2` FOREIGN KEY (`auteur`) REFERENCES `user` (`id`),
+    ADD CONSTRAINT `note_btw_0_5` check (`note` BETWEEN 0 AND 5);
+
+
+
