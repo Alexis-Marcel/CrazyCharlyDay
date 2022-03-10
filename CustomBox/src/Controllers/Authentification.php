@@ -9,9 +9,18 @@ use Psr\Http\Message\RequestInterface as Request;
 use CustomBox\Models\User;
 use CustomBox\Views\ViewSign;
 
+/**
+ * Classe qui gère l'authentification et les comptes
+ */
 class Authentification extends Controller
 {
 
+    /**
+     * Fonction get qui affiche la page pour s'identifier
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
     public function getSignIn(Request $request, Response $response)
     {
         $vueSignIn = new ViewSign($this->container);
@@ -19,6 +28,12 @@ class Authentification extends Controller
         return $response;
     }
 
+    /**
+     * Fonction post pour s'identifier
+     * @param Request $request
+     * @param Response $response
+     * @return Response|\Slim\Http\Response
+     */
     public function postSignIn(Request $request,Response $response)
     {
         $email = filter_var($request->getParam('email'), FILTER_SANITIZE_STRING) ;
@@ -66,6 +81,12 @@ class Authentification extends Controller
         return $valide;
     }
 
+    /**
+     * Fonction get pour se deconnecter
+     * @param Request $request
+     * @param Response $response
+     * @return Response|\Slim\Http\Response
+     */
     public function getSignOut(Request $request, Response $response){
 
         unset($_SESSION['user']);
