@@ -47,8 +47,8 @@ class ViewGestionProduits
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                    <h1 class="display-4 fw-bolder">L'ATELIER 17.91</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">ATELIERS ITINÉRANTS</p>
                 </div>
             </div>
         </header>
@@ -80,7 +80,7 @@ END;
         </div>
         <!-- Product actions-->
         <form class="card-footer p-4 pt-0 border-top-0 bg-transparent" action="{$this->container->router->pathFor('ajouterPanier', ['id' => $prod->id])}" method="get"> 
-            <button type="submit" class="btn btn-primary">Ajout au panier</button>
+            <button type="submit" class="btn btn-outline-secondary">Ajout au panier</button>
         </form>
     </div>
 </div>

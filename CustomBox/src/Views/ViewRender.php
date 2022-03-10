@@ -57,6 +57,7 @@ class ViewRender
         $connexion .= <<<END
                 </ul>
         END;
+        $nbArticle=count($_SESSION["panier"]);
         return <<<END
         <!DOCTYPE html>
         <html lang="fr">
@@ -93,6 +94,7 @@ class ViewRender
                                     <a class="btn btn-outline-secondary" href="{$this->container->router->pathFor("panier")}">
                                         <i class="bi bi-box"></i>
                                         Panier
+                                        {$this->container->router->pathFor("home")}
                                     </a>
                                 
                             </form>

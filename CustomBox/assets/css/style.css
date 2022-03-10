@@ -88,7 +88,24 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
+.div-panier{
+  text-align: center;
+  font-family: Garamond, serif;
+}
+.panier-titre{
+  background-color: #E77441;
+  padding: 2%;
+  color: white;
+}
+.li-panier{
+  margin: 1%;
+}
+.li-panier:hover{
+  font-size: 120%;
+}
+#bouton-panier{
+  margin: 3%;
+}
 hr {
   margin: 1rem 0;
   color: inherit;
@@ -7864,6 +7881,7 @@ textarea.form-control-lg {
 .bg-transparent {
   --bs-bg-opacity: 1;
   background-color: transparent !important;
+  text-align: center;
 }
 
 .bg-opacity-10 {
