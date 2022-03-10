@@ -202,6 +202,7 @@ ALTER TABLE `produitCommande`
     ADD CONSTRAINT `produitCommande_ibfk_2` FOREIGN KEY (`idCommande`) REFERENCES `commande` (`id`);
 
 CREATE OR REPLACE TABLE `avis` (
+  `id` int(11) NOT NULL,
   `idProduit` int(11) NOT NULL,
   `auteur` int(11) NOT NULL,
   `note` int(1) NOT NULL,
@@ -209,10 +210,10 @@ CREATE OR REPLACE TABLE `avis` (
   `date` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-ALTER TABLE `avis`
-  ADD PRIMARY KEY (`auteur`, `idproduit`);
 
 ALTER TABLE `avis`
+    ADD PRIMARY KEY (`id`),
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
     ADD CONSTRAINT `avis_ibfk_1` FOREIGN KEY (`idProduit`) REFERENCES `produit` (`id`),
     ADD CONSTRAINT `avis_ibfk_2` FOREIGN KEY (`auteur`) REFERENCES `user` (`id`),
     ADD CONSTRAINT `note_btw_0_5` check (`note` BETWEEN 0 AND 5);
