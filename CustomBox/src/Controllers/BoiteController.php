@@ -21,7 +21,7 @@ class BoiteController extends Controller{
             $this->ajouterBoiteBDD($parameters);
             $response->withRedirect($this->container->router->pathFor('home'));
         } else {
-            $response->getBody()->write($vueRender->render($vue->render(1, $parameters)));
+            $response->getBody()->write($vue->render(1, $parameters));
         }
         return $response;
     }
@@ -40,8 +40,7 @@ class BoiteController extends Controller{
             $this->modifierBoiteBDD($boite, $parameters);
             $response->withRedirect($this->container->router->pathFor('home'));
         } else {
-            $v = new ViewGestionProduits($this->container);
-            $response->getBody()->write($vueRender->render($v->render(1,$parameters)));
+            $response->getBody()->write($vue->render(1,$parameters));
         }
         return $response;
     }
