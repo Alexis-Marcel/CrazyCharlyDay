@@ -160,7 +160,16 @@ END;
                 <h2 class='text-info'>Erreur</h2>
                 <p>$message</p>
             </div>                
-");
+        ");
+    }
+
+    public function afficherMessage(string $message)
+    {
+        return $this->render("<div class='block-heading'>
+                <h2 class='text-info'>Message</h2>
+                <p>$message</p>
+            </div>                
+        ");
     }
 
 }
