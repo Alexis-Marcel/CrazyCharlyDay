@@ -15,4 +15,8 @@ class Produit extends Model
         return $this->belongsTo('\CustomBox\Models\Categorie','categorie');
     }
 
+    public function commandes() {
+        return $this->belongsToMany('\CustomBox\Models\Commande', 'produitCommande', 'idProduit', 'idCommande');
+    }
+
 }
