@@ -29,7 +29,7 @@ class ProduitController extends Controller{
             $this->ajouterProduitBDD($parameters);
             $response->withRedirect($this->container->router->pathFor('home'));
         } else {
-            $response->getBody()->write($vueRender->render($vue->render(2, $parameters)));
+            $response->getBody()->write($vue->render(2, $parameters));
         }
         return $response;
     }
@@ -42,7 +42,7 @@ class ProduitController extends Controller{
         if($request->isPost()){
             $titre = filter_var( $request->getParsedBody()['titre'], FILTER_SANITIZE_STRING);
             $description = filter_var( $request->getParsedBody()['description'], FILTER_SANITIZE_STRING);
-            $categorie = filter_var( $request->getParsedBody()['request'], FILTER_SANITIZE_STRING);
+            $categorie = filter_var( $request->getParsedBody()['categorie'], FILTER_SANITIZE_NUMBER_INT);
             $poids = filter_var( $request->getParsedBody()['poids'], FILTER_SANITIZE_NUMBER_FLOAT);
 
             $parameters["titre"]=$titre;
@@ -57,7 +57,7 @@ class ProduitController extends Controller{
 
             $response->withRedirect($this->container->router->pathFor('home'));
         } else {
-            $response->getBody()->write($vueRender->render($vue->render(3, $parameters)));
+            $response->getBody()->write($vue->render(3, $parameters));
         }
         return $response;
     }
