@@ -43,7 +43,7 @@ class ViewAffichageUser
         $html = <<<END
                 
                 <div class="m-auto">
-                    <h3 class="text-center">La liste de tous les utilisateurs du site :</h3>
+                <div class="div-panier"><div class="panier-titre"><h3 class="text-center">La liste de tous les utilisateurs du site :</h3></div></div>
                    <table class="table">
                       <thead>
                         <tr>
