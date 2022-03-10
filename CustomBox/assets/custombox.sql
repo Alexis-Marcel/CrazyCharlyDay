@@ -214,7 +214,7 @@ CREATE TABLE `avis` (
   `auteur` int(11) NOT NULL,
   `note` int(1) NOT NULL,
   `commentaire` text NOT NULL,
-  `date` int(11) NOT NULL
+  `date` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
