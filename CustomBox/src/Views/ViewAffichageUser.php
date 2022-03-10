@@ -52,7 +52,6 @@ class ViewAffichageUser
                         </tr>
                       </thead>
                       <tbody>
-                    
                             $content
                        </tbody>
                     </table>

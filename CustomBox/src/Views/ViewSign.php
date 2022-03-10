@@ -49,15 +49,15 @@ class ViewSign
                                     <form method="POST" action="{$this->container->router->pathFor("signin")}" class="register-form" id="register-form">
                                         <div class="form-group">
                                             <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                            <input type="email" name="email" id="email" placeholder="Votre Email"/>
+                                            <input type="email" name="email" id="email" placeholder="Votre Email" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                            <input type="password" name="pass" id="pass" placeholder="Mot de passe"/>
+                                            <input type="password" name="pass" id="pass" placeholder="Mot de passe" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                            <input type="password" name="re_pass" id="re_pass" placeholder="Répétez votre mot de passe"/>
+                                            <input type="password" name="re_pass" id="re_pass" placeholder="Répétez votre mot de passe" required />
                                         </div>
                                         <div class="form-group">
                                             <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
@@ -117,11 +117,11 @@ class ViewSign
                                     <form method="POST" action="{$this->container->router->pathFor("signup")}" class="register-form" id="register-form">
                                         <div class="form-group">
                                             <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                            <input type="email" name="email" id="email" placeholder="Votre Email"/>
+                                            <input type="email" name="email" id="email" placeholder="Votre Email" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                            <input type="password" name="pass" id="pass" placeholder="Mot de passe"/>
+                                            <input type="password" name="pass" id="pass" placeholder="Mot de passe" required />
                                         </div>
                                         <div class="form-group form-button">
                                             <input type="submit" name="signup" id="signup" class="form-submit" value="Connexion"/>
@@ -177,15 +177,15 @@ class ViewSign
                                     <form method="POST" action="{$this->container->router->pathFor("editCompte")}" class="register-form" id="register-form">
                                         <div class="form-group">
                                             <label for="ancienmdp"><i class="zmdi zmdi-email"></i></label>
-                                            <input type="password" name="ancienmdp" id="ancienmdp" placeholder="Ancien mot de passe"/>
+                                            <input type="password" name="ancienmdp" id="ancienmdp" placeholder="Ancien mot de passe" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="nouveaumdp"><i class="zmdi zmdi-lock"></i></label>
-                                            <input type="password" name="nouveaumdp" id="nouveaumdp" placeholder="Nouveau mot de passe"/>
+                                            <input type="password" name="nouveaumdp" id="nouveaumdp" placeholder="Nouveau mot de passe" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="re_nouveaumdp"><i class="zmdi zmdi-lock"></i></label>
-                                            <input type="password" name="re_nouveaumdp" id="re_nouveaumdp" placeholder="Répétez votre nouveau mot de passe"/>
+                                            <input type="password" name="re_nouveaumdp" id="re_nouveaumdp" placeholder="Répétez votre nouveau mot de passe" required />
                                         </div>
                                         <div class="form-group form-button">
                                             <input type="submit" name="signup" id="signup" class="form-submit" value="Changer le mot de passe"/>

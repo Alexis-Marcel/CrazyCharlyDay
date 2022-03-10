@@ -2,6 +2,7 @@
 
 namespace CustomBox\Controllers;
 
+use CustomBox\Views\ViewRender;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\RequestInterface as Request;
 
@@ -24,8 +25,14 @@ class Authentification extends Controller
         $password = filter_var($request->getParam('pass'), FILTER_SANITIZE_STRING) ;
         $re_password = filter_var($request->getParam('re_pass'), FILTER_SANITIZE_STRING) ;
 
-        if(!$this->check($email,$password,$re_password)){
-            return $response->withRedirect($this->container->router->pathFor('signin'));
+        if(!$this->checkMp($password,$re_password)){
+            $vue = new ViewRender($this->container);
+            return $response->getBody()->write($vue->afficherErreur("Les mots de passe ne sont pas identiques !"));
+        }
+
+        if(!$this->checkEmail($email)){
+            $vue = new ViewRender($this->container);
+            return $response->getBody()->write($vue->afficherErreur("Cet email est déjà utilisé !"));
         }
 
         $user = User::create([
@@ -38,18 +45,25 @@ class Authentification extends Controller
         return $response->withRedirect($this->container->router->pathFor('home'));
     }
 
-    public function check($email,$password,$re_password){
+    public function checkMp($password,$re_password){
         $valide = true;
 
         if($password !== $re_password){
             $valide = false;
         }
-        else if(User::where('email', $email)->count() !== 0){
+
+
+        return $valide;
+
+    }
+
+    public function checkEmail($email){
+        $valide = true;
+         if(User::where('email', $email)->count() !== 0){
             $valide = false;
         }
 
         return $valide;
-
     }
 
     public function getSignOut(Request $request, Response $response){
@@ -75,7 +89,8 @@ class Authentification extends Controller
         $auth = $this->attempt($email,$password);
 
         if(!$auth){
-            return $response->withRedirect($this->container->router->pathFor('signup'));
+                $vue = new ViewRender($this->container);
+                return $response->getBody()->write($vue->afficherErreur("L'email ou le mot de passe est incorrect"));
         }
 
         return $response->withRedirect($this->container->router->pathFor('home'));
@@ -118,14 +133,15 @@ class Authentification extends Controller
                     ]);
                     return $response->withRedirect($this->container->router->pathFor('home'));
 
-
                 }
                 else {
-                    return $response->withRedirect($this->container->router->pathFor('editCompte'));
+                        $vue = new ViewRender($this->container);
+                        return $response->getBody()->write($vue->afficherErreur("Les mots de passe ne sont pas identiques !"));
                 }
             }
             else {
-                echo $ancienpass;
+                $vue = new ViewRender($this->container);
+                return $response->getBody()->write($vue->afficherErreur("Ancien mot de passe incorrect !"));
             }
         }
         else {
