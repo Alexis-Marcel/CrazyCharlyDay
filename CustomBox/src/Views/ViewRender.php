@@ -33,6 +33,30 @@ class ViewRender
      */
     public function render(string $content): string
     {
+
+        $connexion = <<<END
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+        END;
+        if(!isset($_SESSION['user'])){
+            $connexion .= <<<END
+                                    <li class="nav-item"><a class="nav-link" href="{$this->container->router->pathFor("signup")}">Connexion</a></li>  
+                                    <li class="nav-item"><a class="nav-link" href="{$this->container->router->pathFor("signin")}">Inscription</a></li>
+            END;
+        }else {
+            $connexion .= <<<END
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i></a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="{$this->container->router->pathFor("signout")}">Déconnexion</a></li>
+                                    </ul>
+                                <li class="nav-item dropdown">
+
+            END;
+        }
+
+        $connexion .= <<<END
+                </ul>
+        END;
         return <<<END
         <!DOCTYPE html>
         <html lang="en">
@@ -71,10 +95,7 @@ class ViewRender
                                 </li>
                             </ul>
                             <form class="d-flex">              
-                                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                                    <li class="nav-item"><a class="nav-link" href="#!">Connexion</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="{$this->container->router->pathFor("signin")}">Inscription</a></li>
-                                </ul>
+                                $connexion
                                 <button class="btn btn-outline-dark" type="submit">
                                     <i class="bi-cart-fill me-1"></i>
                                     Cart
@@ -85,7 +106,7 @@ class ViewRender
                     </div>
                 </nav>
                 
-                $content;
+                $content
                 
                                 
                 <!-- Footer-->
