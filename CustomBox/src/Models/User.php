@@ -25,4 +25,9 @@ class User extends Model
         return $this->hasMany('\CustomBox\Models\Commande', 'idUser');
     }
 
+    public function avis()
+    {
+        return $this->hasMany('\CustomBox\Models\Avis', 'auteur');
+    }
+
 }

@@ -1,6 +1,7 @@
 <?php
 namespace CustomBox\Controllers;
 
+use CustomBox\Models\Avis;
 use CustomBox\Models\Produit;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\RequestInterface as Request;
@@ -114,6 +115,56 @@ class ProduitController extends Controller{
         }
         return $rs;
     }
+
+    /**
+     * Generere l'affichage du catalogue
+     */
+    public function affichageProduit(Request $rq, Response $rs, array $args): Response
+    {
+        try {
+            $id =  filter_var($args['id'], FILTER_SANITIZE_NUMBER_INT);
+
+            $vue = new ViewGestionProduits($this->container);
+            //on recupere les items
+            $produit = Produit::query()->select('*')->where('id', "=", $id)->firstOrFail();
+
+            $rs->getBody()->write($vue->render(4, [$produit]));
+        } catch (\Exception $e) {
+            $vue = new ViewRender($this->container);
+            $rs->getBody()->write($vue->render($vue->afficherErreur("Erreur dans l'affichage du catalogue...".$e->getMessage()."<br>".$e->getTrace())));
+        }
+        return $rs;
+    }
+
+    public function ajouterAvis($rq, $rs, array $args):Response{
+        try {
+
+            if ($rq->isPost() && isset($_SESSION['user'])) {
+                //on est dans un post
+                $note = filter_var( $rq->getParsedBody()['note'], FILTER_SANITIZE_NUMBER_INT);
+                $commentaire = filter_var( $rq->getParsedBody()['commentaire'], FILTER_SANITIZE_STRING);
+                $idProduit = filter_var( $rq->getParsedBody()['idProduit'], FILTER_SANITIZE_NUMBER_INT);
+                $produit = Produit::query()->where('id', '=', $idProduit)->firstOrFail();
+
+                $avis = new Avis();
+                $avis->idProduit = $produit->id;
+                $avis->auteur =  $_SESSION['user'];
+                $avis->note =  $note;
+                $avis->commentaire =  $commentaire;
+                $avis->date = date("D/M/Y");
+                $avis->save();
+
+
+                $rs = $rs->withRedirect($this->container->router->pathFor('afficherProduit', ['id' => $produit->id]));
+            }
+        } catch (\Exception $e) {
+            $vue = new ViewRender($this->container);
+            $rs->getBody()->write($vue->render($vue->afficherErreur("Erreur dans l'ajout d'un avis...".$e->getMessage()."<br>".$e->getTrace())));
+        }
+        return $rs;
+    }
+
+
 
 
 }
