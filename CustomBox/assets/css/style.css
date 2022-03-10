@@ -92,6 +92,20 @@ body {
   text-align: center;
   font-family: Garamond, serif;
 }
+.panier-titre{
+  background-color: #E77441;
+  padding: 2%;
+  color: white;
+}
+.li-panier{
+  margin: 1%;
+}
+.li-panier:hover{
+  font-size: 120%;
+}
+#bouton-panier{
+  margin: 3%;
+}
 hr {
   margin: 1rem 0;
   color: inherit;
