@@ -47,9 +47,13 @@ END;
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li class="dropdown-item"><a class="nav-link" href="{$this->container->router->pathFor("creationProduit")}">Création de produit</a></li>
     <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("modifierProduit")}">Modification de produits</a></li>
-
+                                     <li><hr class="dropdown-divider" /></li>
     <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("creationBoite")}">Création de boite</a></li>
     <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("modifierBoite")}">Modification de boite</a></li>
+                                                        <li><hr class="dropdown-divider" /></li>
+
+        <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("affichageUser")}">Afficher les utilisateurs</a></li>
+
                                     </ul>
                                 </li>
     
@@ -71,6 +75,8 @@ END;
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i></a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="{$this->container->router->pathFor("editCompte")}">Modification de mot de passe</a></li>
+                                        <li><hr class="dropdown-divider" /></li>
                                         <li><a class="dropdown-item" href="{$this->container->router->pathFor("signout")}">Déconnexion</a></li>
                                     </ul>
                                 </li>
@@ -81,7 +87,11 @@ END;
         $connexion .= <<<END
                 </ul>
         END;
-        $nbArticle=count($_SESSION["panier"]);
+        if (isset($_SESSION["panier"])) {
+            $nbArticle = count($_SESSION["panier"]);
+        } else {
+            $nbArticle = 0;
+        }
         return <<<END
         <!DOCTYPE html>
         <html lang="fr">
@@ -108,15 +118,10 @@ END;
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-<<<<<<< Updated upstream
                                 <li class="nav-item"><a class="nav-link" aria-current="page" href="{$this->container->router->pathFor("home")}">Accueil</a></li>
                                 <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/atelier17.91/" target="_blank">A propos</a></li>
                                
-=======
-                                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                                <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/atelier17.91/">A propos</a></li>
                             $fonctionnaliteAdmin  
->>>>>>> Stashed changes
                             </ul>
                             <form class="d-flex">              
                               $connexion
@@ -124,6 +129,7 @@ END;
                                     <a class="btn btn-outline-secondary" href="{$this->container->router->pathFor("panier")}">
                                         <i class="bi bi-box"></i>
                                         Panier
+                                        <span class="badge bg-dark text-white ms-1 rounded-pill">$nbArticle</span>
                                     </a>
                                 
                             </form>
