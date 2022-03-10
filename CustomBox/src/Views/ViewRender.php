@@ -77,21 +77,24 @@ class ViewRender
                 <!-- Navigation-->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
                     <div class="container px-4 px-lg-5 ">
-                        <a class="navbar-brand" href="#!"><img style="width: 40px" src="{$this->container->router->pathFor("home")}assets/logo.png"></a>
+                        <a class="navbar-brand" href="{$this->container->router->pathFor("home")}">
+                            <img style="width: 40px" src="{$this->container->router->pathFor("home")}assets/logo.png">
+                        </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" aria-current="page" href="{$this->container->router->pathFor("home")}">Accueil</a></li>
                                 <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/atelier17.91/" target="_blank">A propos</a></li>
                                
                             </ul>
                             <form class="d-flex">              
                               $connexion
         
-                                <button class="btn btn-outline-secondary" type="submit">
-                                    <i class="bi bi-box"></i>
-                                    Cart
-                                </button>
+                                    <a class="btn btn-outline-secondary" href="{$this->container->router->pathFor("panier")}">
+                                        <i class="bi bi-box"></i>
+                                        Panier
+                                    </a>
+                                
                             </form>
                         </div>
                     </div>

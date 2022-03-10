@@ -35,7 +35,7 @@ class GestionCommandeController extends Controller{
                 $valSql = Produit::find($prod['id']);
                 $poid += $valSql->poids;
             }
-            $idBoite = null;
+            $idBoite = 1;
             $boites = Boite::select('*')->orderBy('poidsmax', 'ASC')->get();
             foreach ($boites as $boite) {
                 if ( $idBoite==null && $poid < $boite->poidsmax) {
