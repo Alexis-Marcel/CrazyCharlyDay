@@ -13,13 +13,13 @@ class BoiteController extends Controller{
         $vue=new ViewGestionBoite($this->container);
         $vueRender = new ViewRender($this->container);
         if ($request->isPost()){
-            $taille = filter_var( $request->getParsedBody()['titre'], FILTER_SANITIZE_STRING);
-            $poidsmax = filter_var( $request->getParsedBody()['taille'], FILTER_SANITIZE_NUMBER_FLOAT);
+            $taille = filter_var( $request->getParam('taille'), FILTER_SANITIZE_STRING);
+            $poidsmax = filter_var( $request->getParam('poidsmax'), FILTER_SANITIZE_NUMBER_FLOAT);
 
             $parameters['taille']=$taille;
             $parameters['poidsmax']=$poidsmax;
             $this->ajouterBoiteBDD($parameters);
-            $response->withRedirect($this->container->router->pathFor('home'));
+            $response->getBody()->write($vueRender->afficherMessage("Votre boite a bien été créé"));
         } else {
             $response->getBody()->write($vue->render(1, $parameters));
         }
@@ -30,8 +30,8 @@ class BoiteController extends Controller{
         $vue=new ViewGestionBoite($this->container);
         $vueRender = new ViewRender($this->container);
         if ($request->isPost()){
-            $taille = filter_var( $request->getParsedBody()['titre'], FILTER_SANITIZE_STRING);
-            $poidsmax = filter_var( $request->getParsedBody()['taille'], FILTER_SANITIZE_NUMBER_FLOAT);
+            $taille = filter_var( $request->getParam('taille'), FILTER_SANITIZE_STRING);
+            $poidsmax = filter_var( $request->getParam('poidsmax'), FILTER_SANITIZE_NUMBER_FLOAT);
 
             $parameters['taille']=$taille;
             $parameters['poidsmax']=$poidsmax;

@@ -16,10 +16,10 @@ class ProduitController extends Controller{
         $vueRender = new ViewRender($this->container);
         if ($request->isPost()){
 
-            $titre = filter_var( $request->getParsedBody()['titre'], FILTER_SANITIZE_STRING);
-            $description = filter_var( $request->getParsedBody()['description'], FILTER_SANITIZE_STRING);
-            $categorie = filter_var( $request->getParsedBody()['request'], FILTER_SANITIZE_STRING);
-            $poids = filter_var( $request->getParsedBody()['poids'], FILTER_SANITIZE_NUMBER_FLOAT);
+            $titre = filter_var( $request->getParam('titre'), FILTER_SANITIZE_STRING);
+            $description = filter_var( $request->getParam('description'), FILTER_SANITIZE_STRING);
+            $categorie = filter_var( $request->getParam('categorie'), FILTER_SANITIZE_STRING);
+            $poids = filter_var( $request->getParam('poids'), FILTER_SANITIZE_NUMBER_FLOAT);
 
             $parameters["titre"]=$titre;
             $parameters["description"]=$description;
@@ -27,7 +27,7 @@ class ProduitController extends Controller{
             $parameters["poids"]=$poids;
 
             $this->ajouterProduitBDD($parameters);
-            $response->withRedirect($this->container->router->pathFor('home'));
+            $response->getBody()->write($vueRender->afficherMessage("Votre produit a bien été créé"));
         } else {
             $response->getBody()->write($vue->render(2, $parameters));
         }
@@ -40,10 +40,10 @@ class ProduitController extends Controller{
         $vueRender = new ViewRender($this->container);
 
         if($request->isPost()){
-            $titre = filter_var( $request->getParsedBody()['titre'], FILTER_SANITIZE_STRING);
-            $description = filter_var( $request->getParsedBody()['description'], FILTER_SANITIZE_STRING);
-            $categorie = filter_var( $request->getParsedBody()['categorie'], FILTER_SANITIZE_NUMBER_INT);
-            $poids = filter_var( $request->getParsedBody()['poids'], FILTER_SANITIZE_NUMBER_FLOAT);
+            $titre = filter_var( $request->getParam('titre'), FILTER_SANITIZE_STRING);
+            $description = filter_var( $request->getParam('description'), FILTER_SANITIZE_STRING);
+            $categorie = filter_var( $request->getParam('categorie'), FILTER_SANITIZE_NUMBER_INT);
+            $poids = filter_var( $request->getParam('poids'), FILTER_SANITIZE_NUMBER_FLOAT);
 
             $parameters["titre"]=$titre;
             $parameters["description"]=$description;

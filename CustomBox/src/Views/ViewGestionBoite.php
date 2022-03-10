@@ -55,14 +55,14 @@ class ViewGestionBoite
                             <div class="signup-content">
                                 <div class="signup-form">
                                     <h2 class="form-title">Creation Boite</h2>
-                                    <form method="POST" action="{$this->container->router->pathFor("editCompte")}" class="register-form" id="register-form">
+                                    <form method="POST" action="{$this->container->router->pathFor("creationBoite")}" class="register-form" id="register-form">
                                         <div class="form-group">
                                             <label for="nom"><i class="bi bi-bookmark"></i></label>
-                                            <input type="text" name="titre" id="titre" placeholder="Titre du produit"/>
+                                            <input type="text" name="taille" id="titre" placeholder="Nom de la boite"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="taille"><i class="bi bi-book"></i></label>
-                                            <input type="float" name="taille" id="taille" placeholder="Description du produit"/>
+                                            <input type="number" step="0.1" name="poidsmax" id="taille" placeholder="Capacité de la boite"/>
                                         </div>
                                         <div class="form-group form-button">
                                             <input type="submit" name="signup" id="signup" class="form-submit" value="Crée Boite"/>
