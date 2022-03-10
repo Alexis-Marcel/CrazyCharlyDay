@@ -92,5 +92,15 @@ END;
 </section>';
     }
 
+    private function affichageCreation():string
+    {
+        return "";
+    }
+
+    private function affichageModification():string
+    {
+        return "";
+    }
+
 
 }
