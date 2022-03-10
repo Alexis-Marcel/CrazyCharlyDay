@@ -48,6 +48,7 @@ class ViewRender
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
                 <!-- Core theme CSS (includes Bootstrap)-->
                 <link href="{$this->container->router->pathFor("home")}assets/css/style.css" rel="stylesheet" />
+               
             </head>
             <body>
                 <!-- Navigation-->
@@ -69,7 +70,11 @@ class ViewRender
                                     </ul>
                                 </li>
                             </ul>
-                            <form class="d-flex">
+                            <form class="d-flex">              
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                                    <li class="nav-item"><a class="nav-link" href="#!">Connexion</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{$this->container->router->pathFor("signin")}">Inscription</a></li>
+                                </ul>
                                 <button class="btn btn-outline-dark" type="submit">
                                     <i class="bi-cart-fill me-1"></i>
                                     Cart
