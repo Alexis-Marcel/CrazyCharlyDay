@@ -25,6 +25,12 @@ class ViewGestionProduits
             case 1 :
                 $content = $this->affichageCatalogue($args);
                 break;
+            case 2 :
+                $content = $this->affichageCreation();
+                break;
+            case 3 :
+                $content = $this->affichageModification();
+                break;
             default:
                 throw new \Exception("Code d'affichage innatendu");
                 break;
@@ -60,21 +66,21 @@ END;
 <div class="col mb-5">
     <div class="card h-100">
         <!-- Product image-->
-        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+        <img class="card-img-top" src="{$this->container->router->pathFor("home")}assets/images/produits/{$prod->id}.jpg" alt="..." />
         <!-- Product details-->
         <div class="card-body p-4">
             <div class="text-center">
                 <!-- Product name-->
-                <h5 class="fw-bolder">$prod->titre</h5>
+                <h5 class="fw-bolder">{$prod->titre}</h5>
                 <!-- Product description-->
-                <p>$prod->description</p>
+                <p>{$prod->description}</p>
                 <p></p>
-                <p>$prod->poids</p>
+                <p>{$prod->poids}kg</p>
             </div>
         </div>
         <!-- Product actions-->
         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+            <div class="text-center"><a class="btn btn-outline-secondary mt-auto" href="">Ajouter au panier</a></div>
         </div>
     </div>
 </div>
@@ -86,5 +92,19 @@ END;
 </section>';
     }
 
+    private function affichageCreation():string
+    {
+        $content = <<<END
 
+END;
+        return $content;
+    }
+
+    private function affichageModification():string
+    {
+        $content = <<<END
+
+END;
+        return $content;
+    }
 }

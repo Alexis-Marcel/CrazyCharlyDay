@@ -72,7 +72,6 @@ class ViewRender
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
                 <!-- Core theme CSS (includes Bootstrap)-->
                 <link href="{$this->container->router->pathFor("home")}assets/css/style.css" rel="stylesheet" />
-               
             </head>
             <body>
                 <!-- Navigation-->
@@ -95,9 +94,10 @@ class ViewRender
                                 </li>
                             </ul>
                             <form class="d-flex">              
-                                $connexion
-                                <button class="btn btn-outline-dark" type="submit">
-                                    <i class="bi-cart-fill me-1"></i>
+                              $connexion
+        
+                                <button class="btn btn-outline-secondary" type="submit">
+                                    <i class="bi bi-box"></i>
                                     Cart
                                     <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                                 </button>

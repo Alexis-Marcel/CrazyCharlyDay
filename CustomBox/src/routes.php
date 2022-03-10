@@ -29,6 +29,8 @@ $app->post('/signup', CustomBox\Controllers\Authentification::class . ':postSign
 
 $app->get('/signout', CustomBox\Controllers\Authentification::class . ':getSignOut')->setName('signout');
 
+$app->get('/panier', CustomBox\Controllers\GestionCommandeController::class.':afficherPanier')->setName("panier");
+$app->get('/ajouterPanier/{id}', CustomBox\Controllers\GestionCommandeController::class.':ajouterPanier')->setName("ajouterPanier");
 
 $app->get('/test', function (Request $rq, Response $rs, array $args): Response {
     $rs->getBody()->write("test");
