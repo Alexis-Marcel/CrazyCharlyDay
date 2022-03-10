@@ -151,7 +151,6 @@ ALTER TABLE `produit`
 --
 ALTER TABLE `produit`
   ADD CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`categorie`) REFERENCES `categorie` (`id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
@@ -171,3 +170,33 @@ create table `user`
 
 ALTER TABLE `user`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+COMMIT;
+
+--
+-- Ajout table Commande et ProduitCommande
+--
+
+create table `commande`
+(
+    id      int(11) PRIMARY KEY,
+    idUser  int(11),
+    idBoite int(11),
+    etat    varchar(20)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+ALTER TABLE `commande`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 1,
+    ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`),
+    ADD CONSTRAINT `commande_ibfk_2` FOREIGN KEY (`idBoite`) REFERENCES `boite` (`id`);
+
+create table `produitCommande`
+(
+    idProduit  int(11),
+    idCommande int(11)
+);
+
+ALTER TABLE `produitCommande`
+    ADD CONSTRAINT `produitCommande_ibfk_1` FOREIGN KEY (`idProduit`) REFERENCES `produit` (`id`),
+    ADD CONSTRAINT `produitCommande_ibfk_2` FOREIGN KEY (`idCommande`) REFERENCES `commande` (`id`);
