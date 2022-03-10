@@ -49,7 +49,7 @@ class ViewGestionCommande
         if (isset($_SESSION["panier"])) {
             $tab = $_SESSION["panier"];
         }
-        $html = '<div class="div-panier"><div class="panier-titre"><h2>Votre panier :</h2></div><ul>';
+        $html = '<div class="div-panier"><div class="panier-titre"><h2>Votre panier :</h2></div>';
         if ($tab!=null){
             foreach ($tab as $value) {
                 $html .= "<li class='li-panier'>" . $this->trouverProduit($value["id"])->titre . "</li>";

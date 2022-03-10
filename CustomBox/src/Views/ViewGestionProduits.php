@@ -117,7 +117,6 @@ END;
     <p>{$unAvis->commentaire}</p> 
     <p>Postee le : {$unAvis->date}</p>
 </div>
-</div>
 END;
         }
 
