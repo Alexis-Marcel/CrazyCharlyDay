@@ -19,4 +19,10 @@ class Produit extends Model
         return $this->belongsToMany('\CustomBox\Models\Commande', 'produitCommande', 'idProduit', 'idCommande');
     }
 
+    public function avis()
+    {
+        return $this->hasMany('\CustomBox\Models\Avis', 'idProduit');
+    }
+
+
 }

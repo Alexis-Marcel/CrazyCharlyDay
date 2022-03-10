@@ -4,24 +4,23 @@ namespace CustomBox\Views;
 
 use CustomBox\Models\Categorie;
 use CustomBox\Views\ViewRender;
+use http\Encoding\Stream\Inflate;
 use Slim\Container;
 
-class ViewGestionProduits
-{
+class ViewGestionProduits {
 
     // ATTRIBUTS
     private $container;
 
     // CONSTRUCTEUR
-    public function __construct(Container $c)
-    {
+    public function __construct(Container $c) {
         $this->container = $c;
     }
 
-    public function render(int $code, array $args):string//2-3 pris 2 creation, 3 modif
+    public function render(int $code, array $args): string//2-3 pris 2 creation, 3 modif
     {
         $content = "";
-        switch ($code){
+        switch ($code) {
             case 1 :
                 $content = $this->affichageCatalogue($args);
                 break;
@@ -31,6 +30,9 @@ class ViewGestionProduits
             case 3 :
                 $content = $this->affichageModification();
                 break;
+            case 4:
+                $content = $this->affichageProduit($args);
+                break;
             default:
                 throw new \Exception("Code d'affichage innatendu");
                 break;
@@ -39,8 +41,85 @@ class ViewGestionProduits
         return $vue->render($content);
     }
 
-    private function affichageCatalogue(array $args): string
-    {
+    private function affichageProduit(array $args): string {
+        $produit = $args[0];
+        //affiche l'item
+        $item = <<<END
+        <!-- Product image-->
+        <img class="card-img-top" src="{$this->container->router->pathFor("home")}assets/images/produits/{$produit->id}.jpg" alt="..." />
+        <!-- Product details-->
+        <div class="card-body p-4">
+            <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder">{$produit->titre}</h5>
+                <!-- Product description-->
+                <p>{$produit->description}</p>
+                <p></p>
+                <p>{$produit->poids}kg</p>
+            </div>
+        </div>
+        <!-- Product actions-->
+        <form class="card-footer p-4 pt-0 border-top-0 bg-transparent" action="{$this->container->router->pathFor('ajouterPanier', ['id' => $produit->id])}" method="get"> 
+            <button type="submit" class="btn btn-outline-secondary">Ajout au panier</button>
+        </form>
+END;
+
+        //propose de laisser un commentaire
+        $formCommentaire = <<<END
+<form action="{$this->container->router->pathFor('ajouterAvis', ['id' => $produit->id])}" method="post" enctype="multipart/form-data">
+                    <div class='div-panier'>
+                    <div class='panier-titre'>
+    <label for="note" class="form-label">Note de 0 à 5 :</label>
+    <input type="number" step="1" min="0" max="5" id="note" class="form-control" name="note" placeholder="" required><br>
+    
+    <label for="commentaire" class="form-label">Commentaire</label>
+    <input type="text" class="form-control" id="commentaire" name="commentaire" placeholder=""><br>
+    <input type="hidden" id="idProduit" name="idProduit" value="$produit->id"><br>
+    
+    <button type="submit" class="btn btn-outline-secondary">
+        Ajouter commentaire
+    </button>
+    </div>
+    </div>
+</form>
+END;
+
+
+        //affiche les commentaires
+        $avisHtml = <<<END
+<div class='div-panier'>
+    <h3>Commentaires:</h3>
+
+END;
+
+        $lAvis = $produit->avis;
+        foreach ($lAvis as $unAvis) {
+            $avisHtml .= <<<END
+<div class="commentaire-div">
+    <h4>Avis de {$unAvis->auteur->email} note : {$unAvis->note}/5</h4>
+    <p>{$unAvis->commentaire}</p> 
+    <p>Postee le : {$unAvis->date}</p>
+</div>
+</div>
+END;
+        }
+
+        $avisHtml .= '</div>';
+
+
+        return <<<END
+        <div>
+            <div>
+                $item
+            </div>
+            $formCommentaire
+            $avisHtml
+        </div>
+END;
+
+    }
+
+    private function affichageCatalogue(array $args): string {
         $args = $args[0];
         $content = <<<END
  <!-- Header-->
@@ -59,41 +138,41 @@ class ViewGestionProduits
 END;
 
 
-
-        foreach ($args as $prod){
+        foreach ($args as $prod) {
             //$categorie = $prod->categorie->nom;
             $content .= <<<END
 <div class="col mb-5">
-    <div class="card h-100">
-        <!-- Product image-->
-        <img class="card-img-top" src="{$this->container->router->pathFor("home")}assets/images/produits/{$prod->id}.jpg" alt="..." />
-        <!-- Product details-->
-        <div class="card-body p-4">
-            <div class="text-center">
-                <!-- Product name-->
-                <h5 class="fw-bolder">{$prod->titre}</h5>
-                <!-- Product description-->
-                <p>{$prod->description}</p>
-                <p></p>
-                <p>{$prod->poids}kg</p>
+    <a href="{$this->container->router->pathFor('afficherProduit', ['id' => $prod->id])}">
+        <div class="card h-100">
+            <!-- Product image-->
+            <img class="card-img-top" src="{$this->container->router->pathFor("home")}assets/images/produits/{$prod->id}.jpg" alt="..."/>
+            <!-- Product details-->
+            <div class="card-body p-4">
+                <div class="text-center">
+                    <!-- Product name-->
+                    <h5 class="fw-bolder">{$prod->titre}</h5>
+                    <!-- Product description-->
+                    <p>{$prod->description}</p>
+                    <p></p>
+                    <p>{$prod->poids}kg</p>
+                </div>
             </div>
+            <!-- Product actions-->
+            <form class="card-footer p-4 pt-0 border-top-0 bg-transparent" action="{$this->container->router->pathFor('ajouterPanier', ['id' => $prod->id])}" method="get"> 
+                <button type="submit" class="btn btn-outline-secondary">Ajout au panier</button>
+            </form>
         </div>
-        <!-- Product actions-->
-        <form class="card-footer p-4 pt-0 border-top-0 bg-transparent" action="{$this->container->router->pathFor('ajouterPanier', ['id' => $prod->id])}" method="get"> 
-            <button type="submit" class="btn btn-outline-secondary">Ajout au panier</button>
-        </form>
-    </div>
+    </a>
 </div>
 END;
         }
         return $content .
-        '</div>
+            '</div>
     </div>
 </section>';
     }
 
-    private function affichageCreation():string
-    {
+    private function affichageCreation(): string {
         return <<<END
             <!DOCTYPE html>
             <html lang="fr">
@@ -156,8 +235,7 @@ END;
         END;
     }
 
-    private function affichageModification():string
-    {
+    private function affichageModification(): string {
         return <<<END
             <!DOCTYPE html>
             <html lang="fr">

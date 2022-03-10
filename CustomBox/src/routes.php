@@ -9,7 +9,11 @@ $app->get('/', \CustomBox\Controllers\ProduitController::class . ':affichageCata
 
 /* Fct creation de produit */
 $app->get('/creationProduit', CustomBox\Controllers\ProduitController::class.':creerProduit')->setName("creationProduit");
+
 $app->post('/creationProduit', CustomBox\Controllers\ProduitController::class.':creerProduit');
+
+$app->get('/afficherProduit/{id}[/]', CustomBox\Controllers\ProduitController::class.':affichageProduit')->setName("afficherProduit");
+$app->post('/ajouterCommentaire/{id}[/]', CustomBox\Controllers\ProduitController::class.':ajouterAvis')->setName("ajouterAvis");
 
 /* Fct modification de produit */
 $app->get('/modificationProduit', CustomBox\Controllers\ProduitController::class.':modifierProduit')->setName("modifierProduit");
