@@ -159,10 +159,13 @@ END;
     public function afficherErreur(string $message)
     {
         return $this->render("<div class='block-heading'>
-                <div class='div-panier'><div class='panier-titre'><h2 class='text-info'>Erreur</h2></div>
-                <p>$message</p>
-            </div>                
-        ");
+                <div class='div-panier'>
+                    <div class='panier-titre'>
+                        <h2>Erreur</h2>
+                    </div>
+                        <p class='txt-err'>$message</p>
+                </div>
+            </div>");
     }
 
     /**
