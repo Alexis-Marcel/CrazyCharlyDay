@@ -51,6 +51,8 @@ END;
                                                         <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("creationBoite")}">Création de boite</a></li>
                                                         <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("modifierBoite")}">Modification de boite</a></li>
                                                         <li><hr class="dropdown-divider" /></li>
+                                                        <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("affichageUser")}">Afficher les utilisateurs</a></li>
+
                                     </ul>
                                 </li>
     
@@ -176,5 +178,4 @@ END;
             </div>                
         ");
     }
-
 }
