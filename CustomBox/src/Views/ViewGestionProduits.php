@@ -47,7 +47,9 @@ class ViewGestionProduits {
         //affiche l'item
         $item = <<<END
         <!-- Product image-->
-        <img class="card-img-top" src="{$this->container->router->pathFor("home")}assets/images/produits/{$produit->id}.jpg" alt="..." />
+        <div class="div-panier">
+        <img class="card-img-top" style="width:300px;" src="{$this->container->router->pathFor("home")}assets/images/produits/{$produit->id}.jpg" alt="..." />
+        </div>
         <!-- Product details-->
         <div class="card-body p-4">
             <div class="text-center">
