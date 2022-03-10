@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `boite`
 --
 
-CREATE OR REPLACE TABLE `boite` (
+CREATE TABLE `boite` (
   `id` int(11) NOT NULL,
   `taille` text NOT NULL,
   `poidsmax` float NOT NULL
@@ -48,7 +48,7 @@ INSERT INTO `boite` (`id`, `taille`, `poidsmax`) VALUES
 -- Structure de la table `categorie`
 --
 
-CREATE OR REPLACE TABLE `categorie` (
+CREATE TABLE `categorie` (
   `id` int(11) NOT NULL,
   `nom` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -70,7 +70,7 @@ INSERT INTO `categorie` (`id`, `nom`) VALUES
 -- Structure de la table `produit`
 --
 
-CREATE OR REPLACE TABLE `produit` (
+CREATE TABLE `produit` (
   `id` int(11) NOT NULL,
   `titre` text NOT NULL,
   `description` text NOT NULL,
@@ -159,7 +159,7 @@ ALTER TABLE `produit`
 --
 -- Ajout table User
 --
-create OR REPLACE table `user`
+create table `user`
 (
     id    int(11) PRIMARY KEY,
     email varchar(100) NOT NULL,
@@ -169,18 +169,21 @@ create OR REPLACE table `user`
   DEFAULT CHARSET = utf8;
 
 ALTER TABLE `user`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
-COMMIT;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+insert into user values (1, 'admin@admin', '$2y$10$d0LYriVIncWHTQ5vNcn9OeTqVM2K1ApO8rRAW0u/fwQLWRrSimVZ2', 1);
 
 --
 -- Ajout table Commande et ProduitCommande
 --
 
-create OR REPLACE table `commande`
+create table `commande`
 (
     id      int(11) PRIMARY KEY,
     idUser  int(11),
     idBoite int(11),
+    couleur varchar(50),
+    message varchar(400),
     etat    varchar(20)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -191,7 +194,7 @@ ALTER TABLE `commande`
     ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`),
     ADD CONSTRAINT `commande_ibfk_2` FOREIGN KEY (`idBoite`) REFERENCES `boite` (`id`);
 
-create OR REPLACE table `produitCommande`
+create table `produitCommande`
 (
     idProduit  int(11),
     idCommande int(11)
@@ -201,7 +204,7 @@ ALTER TABLE `produitCommande`
     ADD CONSTRAINT `produitCommande_ibfk_1` FOREIGN KEY (`idProduit`) REFERENCES `produit` (`id`),
     ADD CONSTRAINT `produitCommande_ibfk_2` FOREIGN KEY (`idCommande`) REFERENCES `commande` (`id`);
 
-CREATE OR REPLACE TABLE `avis` (
+CREATE TABLE `avis` (
   `id` int(11) NOT NULL,
   `idProduit` int(11) NOT NULL,
   `auteur` int(11) NOT NULL,
@@ -218,5 +221,4 @@ ALTER TABLE `avis`
     ADD CONSTRAINT `avis_ibfk_2` FOREIGN KEY (`auteur`) REFERENCES `user` (`id`),
     ADD CONSTRAINT `note_btw_0_5` check (`note` BETWEEN 0 AND 5);
 
-
-
+COMMIT;
