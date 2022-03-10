@@ -186,7 +186,7 @@ h2 {
     font-size: 36px; }
 
 .main {
-    background: #f8f8f8;
+    background: #DDC484;
     padding: 150px 0; }
 
 .clear {
@@ -196,7 +196,7 @@ body {
     font-size: 13px;
     line-height: 1.8;
     color: #222;
-    background: #f8f8f8;
+    background: #DDC484;
     font-weight: 400;
     font-family: Poppins; }
 
@@ -274,7 +274,7 @@ figure {
 
 .form-submit {
     display: inline-block;
-    background: #6dabe4;
+    background: #47ACA4;
     color: #fff;
     border-bottom: none;
     width: auto;
