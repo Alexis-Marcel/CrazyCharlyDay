@@ -159,7 +159,7 @@ END;
     public function afficherErreur(string $message)
     {
         return $this->render("<div class='block-heading'>
-                <h2 class='text-info'>Erreur</h2>
+                <div class="div-panier"><div class="panier-titre"><h2 class='text-info'>Erreur</h2></div>
                 <p>$message</p>
             </div>                
         ");
