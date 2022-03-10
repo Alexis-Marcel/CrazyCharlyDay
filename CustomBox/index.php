@@ -19,4 +19,6 @@ $container = $app->getContainer();
 
 require __DIR__ . '/src/routes.php';
 
+$app->get('/signin', CustomBox\Controllers\Authentification::class . ':getSignIn')->setName('signin');
+
 $app -> run();

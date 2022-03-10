@@ -4,9 +4,9 @@ namespace CustomBox\Controllers;
 use CustomBox\Models\Produit;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\RequestInterface as Request;
-
 use CustomBox\Views\ViewRender;
-use Views\ViewGestionProduits;
+use CustomBox\Views\ViewGestionProduits;
+
 
 class ProduitController extends Controller{
 
@@ -85,4 +85,43 @@ class ProduitController extends Controller{
             throw new \Exception("Sauvegarde de l'item a échoué");
         }
     }
+
+/*
+    public function modifierProduit(Request $request, Response $response, $parameters)
+    {
+        $titre = filter_var( $request->getParsedBody()['titre'], FILTER_SANITIZE_STRING);
+        $description = filter_var( $request->getParsedBody()['description'], FILTER_SANITIZE_STRING);
+        $categorie = filter_var( $request->getParsedBody()['request'], FILTER_SANITIZE_STRING);
+        $poids = filter_var( $request->getParsedBody()['poids'], FILTER_SANITIZE_NUMBER_FLOAT);
+
+        $parameters["titre"]=$titre;
+        $parameters["description"]=$description;
+        $parameters["categorie"]=$categorie;
+        $parameters["poids"]=$poids;
+
+        $this->modifierProduitBDD($parameters);
+        return $response;
+    }
+*/
+
+    /**
+     * Generere l'affichage du catalogue
+     */
+    public function affichageCatalogue(Request $rq, Response $rs, array $args): Response
+    {
+        try {
+            $vue = new ViewGestionProduits($this->container);
+
+            //on recupere les items
+            $produits = Produit::query()->select('*')->get();
+
+            $rs->getBody()->write($vue->render(1, [$produits]));
+        } catch (\Exception $e) {
+            $vue = new ViewRender($this->container);
+            $rs->getBody()->write($vue->render($vue->afficherErreur("Erreur dans l'affichage du catalogue...".$e->getMessage()."<br>".$e->getTrace())));
+        }
+        return $rs;
+    }
+
+
 }
