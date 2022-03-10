@@ -68,7 +68,7 @@ class ViewRender
                 <meta name="author" content="" />
                 <title>CustomBox</title>
                 <!-- Favicon-->
-                <link rel="icon" type="image/x-icon" href="{$this->container->router->pathFor("home")}assets/favicon.ico" />
+                <link rel="icon" type="image/ico" href="{$this->container->router->pathFor("home")}assets/favicon.ico"/>
                 <!-- Bootstrap icons-->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
                 <!-- Core theme CSS (includes Bootstrap)-->
