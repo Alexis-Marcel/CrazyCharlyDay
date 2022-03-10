@@ -641,19 +641,19 @@ ul.pagination .active a {
 }
 
 .bg-1 {
-  background: url("../html/images/home/hero.jpg");
+  background: url("../images/home/hero.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .bg-2 {
-  background: url(../html/images/subscription/subscription-back.jpg);
+  background: url(../images/subscription/subscription-back.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .bg-3 {
-  background: url(../html/images/call-to-action/cta-background.jpg);
+  background: url(../images/call-to-action/cta-background.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
