@@ -13,11 +13,16 @@ class ProduitController extends Controller{
     {
         if ($request->isPost()){
 
-            /**
-             * FILTER_SANITIZE des parametres
-             */
+            $titre = filter_var( $request->getParsedBody()['titre'], FILTER_SANITIZE_STRING);
+            $description = filter_var( $request->getParsedBody()['description'], FILTER_SANITIZE_STRING);
+            $categorie = filter_var( $request->getParsedBody()['request'], FILTER_SANITIZE_STRING);
+            $poids = filter_var( $request->getParsedBody()['poids'], FILTER_SANITIZE_NUMBER_FLOAT);
 
-
+            $parameters["titre"]=$titre;
+            $parameters["description"]=$description;
+            $parameters["categorie"]=$categorie;
+            $parameters["poids"]=$poids;
+            
             $this->ajouterProduitBDD($parameters);
         }
         return $response;
