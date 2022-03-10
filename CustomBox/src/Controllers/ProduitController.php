@@ -151,7 +151,7 @@ class ProduitController extends Controller{
                 $avis->auteur =  $_SESSION['user'];
                 $avis->note =  $note;
                 $avis->commentaire =  $commentaire;
-                $avis->date = date("D/M/Y");
+                $avis->date = date("DD/mm/YYYY");
                 $avis->save();
 
 
