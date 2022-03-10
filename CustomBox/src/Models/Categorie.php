@@ -4,8 +4,6 @@ declare(strict_types=1);
 // NAMESPACE
 namespace CustomBox\Models;
 
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-
 /**
  * Classe Categorie
  * Représente une categorie au sein de la base de données
