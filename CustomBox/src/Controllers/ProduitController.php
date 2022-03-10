@@ -156,8 +156,8 @@ class ProduitController extends Controller{
 
     public function ajouterAvis($rq, $rs, array $args):Response{
         try {
-
-            if ($rq->isPost() && isset($_SESSION['user'])) {
+            if(!isset($_SESSION['user'])) throw new \Exception('Il faut etre connecté pour ajouter un commentaire');
+            if ($rq->isPost()) {
                 //on est dans un post
                 $note = filter_var( $rq->getParsedBody()['note'], FILTER_SANITIZE_NUMBER_INT);
                 $commentaire = filter_var( $rq->getParsedBody()['commentaire'], FILTER_SANITIZE_STRING);
