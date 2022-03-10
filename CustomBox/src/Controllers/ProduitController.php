@@ -27,9 +27,9 @@ class ProduitController extends Controller{
             $parameters["poids"]=$poids;
 
             $this->ajouterProduitBDD($parameters);
-            $response = $response->withRedirect($this->container->router->pathFor('home'));
+            $response->withRedirect($this->container->router->pathFor('home'));
         } else {
-            $response = $response->getBody()->write($vueRender->render($vue->render(2)));
+            $response->getBody()->write($vueRender->render($vue->render(2, $parameters)));
         }
         return $response;
     }
@@ -55,9 +55,9 @@ class ProduitController extends Controller{
             $this->modifierProduitBDD($produit,$parameters);
 
 
-            $response = $response->withRedirect($this->container->router->pathFor('home'));
+            $response->withRedirect($this->container->router->pathFor('home'));
         } else {
-            $response = $response->getBody()->write($vueRender->render($vue->render(3)));
+            $response->getBody()->write($vueRender->render($vue->render(3, $parameters)));
         }
         return $response;
     }

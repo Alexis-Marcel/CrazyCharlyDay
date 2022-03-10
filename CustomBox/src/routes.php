@@ -17,9 +17,9 @@ $app->get('/modificationProduit', CustomBox\Controllers\ProduitController::class
 $app->post('/modificationProduit', CustomBox\Controllers\ProduitController::class.':modifierProduit')->setName("modifierProduit");
 
 
-$app->get('/creationBoite', \CustomBox\Controllers\BoiteController::class.'creerBoite')->setName("creationBoite");
-$app->get('/modificationBoite', CustomBox\Controllers\ProduitController::class.':modifierBoite')->setName("modifierBoite");
-$app->post('/modificationBoite', CustomBox\Controllers\ProduitController::class.':modifierBoite')->setName("modifierBoite ");
+$app->get('/creationBoite', \CustomBox\Controllers\BoiteController::class.':creerBoite')->setName("creationBoite");
+$app->get('/modificationBoite', CustomBox\Controllers\BoiteController::class.':modifierBoite')->setName("modifierBoite");
+$app->post('/modificationBoite', CustomBox\Controllers\BoiteController::class.':modifierBoite');
 
 $app->get('/signin', CustomBox\Controllers\Authentification::class . ':getSignIn')->setName('signin');
 $app->post('/signin', CustomBox\Controllers\Authentification::class . ':postSignIn');

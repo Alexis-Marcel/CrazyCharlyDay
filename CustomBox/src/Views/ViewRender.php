@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CustomBox\Views;
 
 // IMPORTS
+use CustomBox\Models\User;
 use Slim\Container;
 
 /**
@@ -33,6 +34,29 @@ class ViewRender
      */
     public function render(string $content): string
     {
+        $fonctionnaliteAdmin=<<<END
+
+END;
+        if(isset($_SESSION['user'])){
+            $admin = User::where('id', $_SESSION['user'])->first();
+            if($admin->admin==1){
+                $fonctionnaliteAdmin=<<<END
+
+            <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Fonctionnalité Admin</a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li class="dropdown-item"><a class="nav-link" href="{$this->container->router->pathFor("creationProduit")}">Création de produit</a></li>
+    <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("modifierProduit")}">Modification de produits</a></li>
+
+    <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("creationBoite")}">Création de boite</a></li>
+    <li class="nav-item"><a class="dropdown-item" href="{$this->container->router->pathFor("modifierBoite")}">Modification de boite</a></li>
+                                    </ul>
+                                </li>
+    
+END;
+
+            }
+        }
 
         $connexion = <<<END
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -49,7 +73,7 @@ class ViewRender
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li><a class="dropdown-item" href="{$this->container->router->pathFor("signout")}">Déconnexion</a></li>
                                     </ul>
-                                <li class="nav-item dropdown">
+                                </li>
 
             END;
         }
@@ -84,9 +108,15 @@ class ViewRender
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+<<<<<<< Updated upstream
                                 <li class="nav-item"><a class="nav-link" aria-current="page" href="{$this->container->router->pathFor("home")}">Accueil</a></li>
                                 <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/atelier17.91/" target="_blank">A propos</a></li>
                                
+=======
+                                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/atelier17.91/">A propos</a></li>
+                            $fonctionnaliteAdmin  
+>>>>>>> Stashed changes
                             </ul>
                             <form class="d-flex">              
                               $connexion

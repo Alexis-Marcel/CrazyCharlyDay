@@ -2,10 +2,11 @@
 namespace CustomBox\Controllers;
 
 use CustomBox\Models\Boite;
+use CustomBox\Views\ViewGestionProduits;
 use CustomBox\Views\ViewRender;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
-use Views\ViewGestionBoite;
+use CustomBox\Views\ViewGestionBoite;
 
 class BoiteController extends Controller{
     public function creerBoite(Request $request, Response $response, $parameters):Response{
@@ -13,14 +14,14 @@ class BoiteController extends Controller{
         $vueRender = new ViewRender($this->container);
         if ($request->isPost()){
             $taille = filter_var( $request->getParsedBody()['titre'], FILTER_SANITIZE_STRING);
-            $poidsmax = filter_var( $request->getParsedBody()['taille'], FILTER_SANITIZE_NUMBER_INT);
+            $poidsmax = filter_var( $request->getParsedBody()['taille'], FILTER_SANITIZE_NUMBER_FLOAT);
 
             $parameters['taille']=$taille;
             $parameters['poidsmax']=$poidsmax;
             $this->ajouterBoiteBDD($parameters);
-            $response = $response->withRedirect($this->container->router->pathFor('home'));
+            $response->withRedirect($this->container->router->pathFor('home'));
         } else {
-            $response = $response->getBody()->write($vueRender->render($vue->render(2)));
+            $response->getBody()->write($vueRender->render($vue->render(1, $parameters)));
         }
         return $response;
     }
@@ -36,10 +37,11 @@ class BoiteController extends Controller{
             $parameters['poidsmax']=$poidsmax;
 
             $boite = $this->recupererBoite($parameters["idBoite"]);
-            $this->modifierBoiteBDD($parameters);
-            $response = $response->withRedirect($this->container->router->pathFor('home'));
+            $this->modifierBoiteBDD($boite, $parameters);
+            $response->withRedirect($this->container->router->pathFor('home'));
         } else {
-            $response = $response->getBody()->write($vueRender->render($vue->render(2)));
+            $v = new ViewGestionProduits($this->container);
+            $response->getBody()->write($vueRender->render($v->render(1,$parameters)));
         }
         return $response;
     }

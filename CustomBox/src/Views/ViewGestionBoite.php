@@ -2,7 +2,7 @@
 namespace CustomBox\Views;
 use Slim\Container;
 
-class ViewGestionProduits
+class ViewGestionBoite
 {
     // ATTRIBUTS
     private $container;
@@ -19,7 +19,7 @@ class ViewGestionProduits
         $content = "";
         switch ($code){
             case 1 :
-                $content = $this->affichageBoites($args);
+                $content = $this->affichageBoite($args);
                 break;
             default:
                 throw new \Exception("Code d'affichage innatendu");
