@@ -3,6 +3,7 @@
 namespace CustomBox\Views;
 
 use CustomBox\Models\Categorie;
+use CustomBox\Models\User;
 use CustomBox\Views\ViewRender;
 use http\Encoding\Stream\Inflate;
 use Slim\Container;
@@ -93,10 +94,11 @@ END;
 END;
 
         $lAvis = $produit->avis;
-        foreach ($lAvis as $unAvis) {
+        foreach ($lAvis as $unAvis){
+            $auteur = User::query()->where('id', '=',$unAvis->auteur )->first();
             $avisHtml .= <<<END
 <div class="commentaire-div">
-    <h4>Avis de {$unAvis->auteur->email} note : {$unAvis->note}/5</h4>
+    <h4>Avis de {$auteur->email} note : {$unAvis->note}/5</h4>
     <p>{$unAvis->commentaire}</p> 
     <p>Postee le : {$unAvis->date}</p>
 </div>
@@ -198,7 +200,7 @@ END;
                             <div class="signup-content">
                                 <div class="signup-form">
                                     <h2 class="form-title">Creation produit</h2>
-                                    <form method="POST" action="{$this->container->router->pathFor("editCompte")}" class="register-form" id="register-form">
+                                    <form method="POST" action="{$this->container->router->pathFor("creationProduit")}" class="register-form" id="register-form">
                                         <div class="form-group">
                                             <label for="titre"><i class="bi bi-bookmark"></i></label>
                                             <input type="text" name="titre" id="titre" placeholder="Titre du produit"/>
@@ -209,11 +211,11 @@ END;
                                         </div>
                                         <div class="form-group">
                                             <label for="categorie"><i class="bi bi-tags"></i></label>
-                                            <input type="text" name="categorie" id="categorie" placeholder="Categorie du produit"/>
+                                            <input type="number" step="any" name="categorie" id="categorie" placeholder="Categorie du produit"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="poid"><i class="bi bi-cloud"></i></label>
-                                            <input type="text" name="poid" id="poid" placeholder="Poid du produit"/>
+                                            <input type="number" step="any" name="poid" id="poid" placeholder="Poid du produit"/>
                                         </div>
                                         <div class="form-group form-button">
                                             <input type="submit" name="signup" id="signup" class="form-submit" value="Crée produit"/>

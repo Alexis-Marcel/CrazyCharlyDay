@@ -9,6 +9,9 @@ $app->get('/', \CustomBox\Controllers\ProduitController::class . ':affichageCata
 
 /* Fct creation de produit */
 $app->get('/creationProduit', CustomBox\Controllers\ProduitController::class.':creerProduit')->setName("creationProduit");
+
+$app->post('/creationProduit', CustomBox\Controllers\ProduitController::class.':creerProduit');
+
 $app->get('/afficherProduit/{id}[/]', CustomBox\Controllers\ProduitController::class.':affichageProduit')->setName("afficherProduit");
 $app->post('/ajouterCommentaire/{id}[/]', CustomBox\Controllers\ProduitController::class.':ajouterAvis')->setName("ajouterAvis");
 
@@ -18,6 +21,7 @@ $app->post('/modificationProduit', CustomBox\Controllers\ProduitController::clas
 
 /* Fct creation de boite */
 $app->get('/creationBoite', \CustomBox\Controllers\BoiteController::class.':creerBoite')->setName("creationBoite");
+$app->post('/creationBoite', \CustomBox\Controllers\BoiteController::class.':creerBoite');
 
 /* Fct modification de boite */
 $app->get('/modificationBoite', CustomBox\Controllers\BoiteController::class.':modifierBoite')->setName("modifierBoite");
