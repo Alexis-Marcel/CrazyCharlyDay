@@ -564,4 +564,19 @@ END;
         return $html;
     }
 
+    /**
+     * Génère un mesage d'erreur
+     * @param string $message message d'erreur
+     * @return string html a afficher
+     */
+    public function afficherErreur(string $message)
+    {
+        return <<<END
+            <div class="block-heading">
+                <h2 class="text-info">Erreur</h2>
+                <p>$message</p>
+            </div>
+END;
+    }
+
 }
