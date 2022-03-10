@@ -7,9 +7,14 @@ use Psr\Http\Message\RequestInterface as Request;
 use CustomBox\Views\ViewRender;
 use CustomBox\Views\ViewGestionProduits;
 
-
+/**
+ * Classe controlleur produit qui gère les actions sur les produits
+ */
 class ProduitController extends Controller{
 
+    /**
+     * Fonction get et poste qui gère l'affichage pour créer un produit mais aussi la requete pour l'enregitrer dans la bdd
+     */
     public function creerProduit(Request $request, Response $response, $parameters):Response //2
     {
         $vue=new ViewGestionProduits($this->container);
@@ -34,6 +39,9 @@ class ProduitController extends Controller{
         return $response;
     }
 
+    /**
+     * Fonction get et post qui gère l'affichage et l'action de modification d'un produit
+     */
     public function modifierProduit(Request $request, Response $response, $parameters) //3
     {
         $vue=new ViewGestionProduits($this->container);
@@ -62,6 +70,9 @@ class ProduitController extends Controller{
         return $response;
     }
 
+    /**
+     * Fonction qui ajoute un produit dans la bdd
+     */
     private function ajouterProduitBDD(array $args) : Produit{
         $p = new Produit();
         $p->titre = $args['titre'];
@@ -76,6 +87,9 @@ class ProduitController extends Controller{
         return $p;
     }
 
+    /**
+     * Fonction qui modifie un produit dans la bdd
+     */
     private function modifierProduitBDD(Produit $p, array $args):void {
         $p->titre = $args['titre'];
         $p->description = $args['description'];
@@ -87,6 +101,10 @@ class ProduitController extends Controller{
             throw new \Exception("Sauvegarde de l'item a échoué");
         }
     }
+
+    /**
+     * Fonction qui recupere un produit selon son id
+     */
     private function recupererProduit(int $id): ?Produit{
         try {
             return Produit::query()->where('id', '=', $id)->firstOrFail();
