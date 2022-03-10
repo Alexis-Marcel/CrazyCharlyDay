@@ -31,34 +31,41 @@ class ViewRender
      * @return string String: texte html, cointenu global de chaque page
      * @author Lucas Weiss
      */
-    public function render(String $content) :string{
+    public function render(string $content): string
+    {
         return <<<END
         <!DOCTYPE html>
         <html lang="fr">
             <head>
-                <meta charset="utf-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-                <title>Home - Brand</title>
-                <link rel="stylesheet" href="{$this->container->router->pathFor("accueil")}assets/bootstrap/css/bootstrap.min.css">
-                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
-                <link rel="stylesheet" href="{$this->container->router->pathFor("accueil")}assets/fonts/simple-line-icons.min.css">
-                <link rel="stylesheet" href="{$this->container->router->pathFor("accueil")}assets/css/vanilla-zoom.min.css">
-                <link rel="stylesheet" href="{$this->container->router->pathFor("accueil")}css/style.css">
-
+            
+              <!-- SITE TITTLE -->
+              <meta charset="utf-8">
+              <meta http-equiv="X-UA-Compatible" content="IE=edge">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <title>CustomBox</title>
+              
+              <!-- FAVICON -->
+              <link href="img/favicon.png" rel="shortcut icon">
+              <!-- PLUGINS CSS STYLE -->
+              <!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
+              <!-- Bootstrap -->
+              <link rel="stylesheet" href="{$this->container->router->pathFor("home")}plugins/bootstrap/css/bootstrap.min.css">
+              <link rel="stylesheet" href="{$this->container->router->pathFor("home")}plugins/bootstrap/css/bootstrap-slider.css">
+              <!-- Font Awesome -->
+              <link href="{$this->container->router->pathFor("home")}plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+              <!-- Owl Carousel -->
+              <link href="{$this->container->router->pathFor("home")}plugins/slick-carousel/slick/slick.css" rel="stylesheet">
+              <link href="{$this->container->router->pathFor("home")}plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
+              <!-- Fancy Box -->
+              <link href="{$this->container->router->pathFor("home")}plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+              <link href="{$this->container->router->pathFor("home")}plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+              <!-- CUSTOM CSS -->
+              <link href="{$this->container->router->pathFor("home")}css/style.css" rel="stylesheet">
+            
             </head>
             <body>
                 <header>
-                    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-                        <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                            <div class="collapse navbar-collapse" id="navcol-1"><a class="nav-link" href={$this->container->router->pathFor("accueil")}><img class="logoPrincipal" src="{$this->container->router->pathFor("accueil")}assets/img/MyWishList_logo.png"></a>
-                                <ul class="navbar-nav ms-auto">
-                                    <li class="nav-item"><a class="nav-link" href={$this->container->router->pathFor("accueil")}><p class="textNav">Accueil</p></a></li>
-                                    <li class="nav-item"><a class="nav-link" href={$this->container->router->pathFor("affichageListesPublique")}><p class="textNav">Listes publique</p></a></li>
-                                    <li class="nav-item"><a class="nav-link" href={$this->container->router->pathFor("connectionCompte")}><p class="textNav">Se connecter</p></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
+                    <h1>Navigation</h1>
                 </header>
                     <main class="page landing-page">
                         <section class="clean-block clean-info dark">
@@ -67,16 +74,57 @@ class ViewRender
                             </div>
                         </section>
                     </main>
-                <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-                <script src="assets/js/vanilla-zoom.js"></script>
-                <script src="assets/js/theme.js"></script>
-                <footer>
-                    <div class="clean-block add-on call-to-action blue">
-                        <p class="auteurs">Auteurs: Fabrice ARNOUT, Guillaume RENARD, Marcus RICHIER, Mathieu VINOT, Lucas WEISS<br></p>
-                    </div>          
-                </footer>
-            </body>
+                  <!-- Container End -->
+        </footer>
+        <!-- Footer Bottom -->
+        <footer class="footer-bottom">
+          <!-- Container Start -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-12">
+                <!-- Copyright -->
+                <div class="copyright">
+                  <p>Copyright © <script>
+                      var CurrentYear = new Date().getFullYear()
+                      document.write(CurrentYear)
+                    </script>. All Rights Reserved, theme by <a class="text-primary" href="https://themefisher.com" target="_blank">themefisher.com</a></p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-12">
+                <!-- Social Icons -->
+                <ul class="social-media-icons text-right">
+                  <li><a class="fa fa-facebook" href="https://www.facebook.com/themefisher" target="_blank"></a></li>
+                  <li><a class="fa fa-twitter" href="https://www.twitter.com/themefisher" target="_blank"></a></li>
+                  <li><a class="fa fa-pinterest-p" href="https://www.pinterest.com/themefisher" target="_blank"></a></li>
+                  <li><a class="fa fa-vimeo" href=""></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+ 
+          <div class="top-to">
+            <a id="top" class="" href="#"><i class="fa fa-angle-up"></i></a>
+          </div>
+        </footer>
+        
+        <!-- JAVASCRIPTS -->
+        <script src="{$this->container->router->pathFor("home")}plugins/jQuery/jquery.min.js"></script>
+        <script src="{$this->container->router->pathFor("home")}plugins/bootstrap/js/popper.min.js"></script>
+        <script src="{$this->container->router->pathFor("home")}plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script src="{$this->container->router->pathFor("home")}plugins/bootstrap/js/bootstrap-slider.js"></script>
+          <!-- tether js -->
+        <script src="{$this->container->router->pathFor("home")}plugins/tether/js/tether.min.js"></script>
+        <script src="{$this->container->router->pathFor("home")}plugins/raty/jquery.raty-fa.js"></script>
+        <script src="{$this->container->router->pathFor("home")}plugins/slick-carousel/slick/slick.min.js"></script>
+        <script src="{$this->container->router->pathFor("home")}plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+        <script src="{$this->container->router->pathFor("home")}plugins/fancybox/jquery.fancybox.pack.js"></script>
+        <script src="{$this->container->router->pathFor("home")}plugins/smoothscroll/SmoothScroll.min.js"></script>
+        <!-- google map -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
+        <script src="{$this->container->router->pathFor("home")}plugins/google-map/gmap.js"></script>
+        <script src="{$this->container->router->pathFor("home")}js/script.js"></script>
+        
+        </body>
         </html> 
 END;
     }
@@ -87,57 +135,16 @@ END;
      * @return string String: contenu html
      * @author Lucas Weiss
      */
-    public function affichageAccueil() : string {
-
-        $val = isset($_SESSION['login']);
-        if ($val==0) {
-            $txt = '<p><a href='.$this->container->router->pathFor("creationCompte").'>Se créer un compte</a></p>
-                    <p><a href='.$this->container->router->pathFor("connectionCompte").'>Se connecter</a></p>
-                    <p><a href='.$this->container->router->pathFor("creationListe").'>Créer une nouvelle liste</a></p>';
-        } else {
-            $txt = <<<END
-<p> Bonjour a toi, {$_SESSION["login"]}</p>
-<p><a href={$this->container->router->pathFor("afficherListePerso")}>Afficher ses listes personnelles</a></p>
-<p><a href={$this->container->router->pathFor("creationListe")}>Créer une nouvelle liste</a></p>
-<p>Ajouter une liste dans les listes perso : <form action="{$this->container->router->pathFor('ajouterProprietaire')}" method="post"><input type="text" size="50" name="token" placeholder="notez votre token d'édition ici" autocomplete="off" required> <button type="submit" class="btn btn-primary">Ajouter</button></form></p>
-<p><a href={$this->container->router->pathFor("modificationCompte")}>Modifier les informations du compte</a></p>
-<p><a href={$this->container->router->pathFor("deconectionCompte")}>Se déconnecter</a></p>
-END;
-        }
+    public function affichageAccueil(): string
+    {
 
         $html = <<<END
-                    <div class="block-heading">
+                   
                         <h2 class="text-info">Bienvenue</h2>
-                        <p>Bienvenue sur notre projet PHP de 3ème semestre.<br>Créez votre liste et accéder à vos listes et réserver les items ! Ou encore modifier vos items de vos listes pour créer des superbes listes.<br><br></p>
-                    </div>
-                    <div class="row align-items-center">
-                        <div class="col-md-6ImgAccueil"><img class="img-thumbnail" src="assets/img/gift1.jpg"></div>
-                            <div class="col-md-6">
-                                <h3>Envie d'avoir des cadeaux qui vous plaisent ?<br>À vous de jouer !</h3>
-                                <div class="getting-started-info">
-                                    <p><a href={$this->container->router->pathFor("affichageListesPublique")}>Afficher toutes les listes publiques</a></p>
-                                    {$txt}
-                                </div>
-                        </div>
-                    </div>
 END;
 
 
         return $html;
     }
-
-    /**
-     * Methode qui genere le html pour afficher un message d'erreur
-     * @author Lucas Weiss
-     */
-    public function htmlErreur(string $message): string {
-        return <<<END
-                    <div class="block-heading">
-                        <h2 class="text-info">Erreur</h2>
-                        <p>$message</p>
-                    </div>
-END;
-    }
-
 
 }
