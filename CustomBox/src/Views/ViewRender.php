@@ -96,7 +96,6 @@ class ViewRender
                                     <a class="btn btn-outline-secondary" href="{$this->container->router->pathFor("panier")}">
                                         <i class="bi bi-box"></i>
                                         Panier
-                                        {$this->container->router->pathFor("home")}
                                     </a>
                                 
                             </form>
