@@ -80,7 +80,7 @@ END;
         </div>
         <!-- Product actions-->
         <form class="card-footer p-4 pt-0 border-top-0 bg-transparent" action="{$this->container->router->pathFor('ajouterPanier', ['id' => $prod->id])}" method="get"> 
-            <button type="submit" class="btn btn-primary">Ajout au panier</button>
+            <button type="submit" class="btn btn-outline-secondary">Ajout au panier</button>
         </form>
     </div>
 </div>
