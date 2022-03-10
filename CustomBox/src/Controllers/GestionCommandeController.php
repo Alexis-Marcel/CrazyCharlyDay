@@ -30,14 +30,15 @@ class GestionCommandeController extends Controller{
 
         if(isset($_SESSION['user'])) {
             $tabProduit = $_SESSION["panier"];
-            $poid = 0;
+            $poid = 0.0;
             foreach ($tabProduit as $prod) {
-                $poid += Produit::find($prod)->poids;
+                $valSql = Produit::find($prod['id']);
+                $poid += $valSql->poids;
             }
             $idBoite = null;
             $boites = Boite::select('*')->orderBy('poidsmax', 'ASC')->get();
             foreach ($boites as $boite) {
-                if ($poid < $boite->poidsmax) {
+                if ( $idBoite==null && $poid < $boite->poidsmax) {
                     $idBoite = $boite->id;
                 }
             }
@@ -48,7 +49,7 @@ class GestionCommandeController extends Controller{
                 $commande->idBoite = $idBoite;
                 $commande->save();
                 foreach ($tabProduit as $prod) {
-                    Produit::find($prod)->commandes()->save($commande);
+                    Produit::find($prod['id'])->commandes()->save($commande);
                 }
                 $_SESSION["panier"] = [];
             } else {
