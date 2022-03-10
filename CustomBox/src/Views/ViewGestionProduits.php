@@ -74,7 +74,7 @@ END;
     
     <label for="commentaire" class="form-label">Commentaire</label>
     <input type="text" class="form-control" id="commentaire" name="commentaire" placeholder=""><br>
-    <input type="hidden" id="idProduit" value="$produit->id"><br>
+    <input type="hidden" id="idProduit" name="idProduit" value="$produit->id"><br>
     
     <button type="submit" class="btn btn-primary">
         Ajouter commentaire

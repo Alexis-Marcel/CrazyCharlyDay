@@ -143,7 +143,7 @@ class ProduitController extends Controller{
                 //on est dans un post
                 $note = filter_var( $rq->getParsedBody()['note'], FILTER_SANITIZE_NUMBER_INT);
                 $commentaire = filter_var( $rq->getParsedBody()['commentaire'], FILTER_SANITIZE_STRING);
-                $idProduit = filter_var( $rq->getParsedBody()['idProduit'], FILTER_SANITIZE_NUMBER_INT);
+                $idProduit = filter_var( $args['id'], FILTER_SANITIZE_NUMBER_INT);
                 $produit = Produit::query()->where('id', '=', $idProduit)->firstOrFail();
 
                 $avis = new Avis();
