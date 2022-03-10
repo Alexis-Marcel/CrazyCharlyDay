@@ -1,6 +1,6 @@
 <?php
 
-namespace wish\Models;
+namespace CustomBox\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
