@@ -2,10 +2,7 @@
 
 namespace CustomBox\Views;
 
-use CustomBox\Views\ViewRender;
 use Slim\Container;
-
-use CustomBox\Models\User;
 
 class ViewSign
 {
@@ -19,6 +16,10 @@ class ViewSign
         $this->container = $c;
     }
 
+    /**
+     * Fonction qui gènère la page pour se connecter
+     * @return string html
+     */
     public function signin(): string
     {
         $html = <<<END
@@ -87,6 +88,10 @@ class ViewSign
 
     }
 
+    /**
+     * Fonction qui gènère la page pour s'inscrire
+     * @return string HTML
+     */
     public function signup(): string
     {
         $html = <<<END
@@ -147,6 +152,10 @@ class ViewSign
 
     }
 
+    /**
+     * Fonction qui gènere la page pour editer un compte
+     * @return string html
+     */
     public function editCompte(): string
     {
         $html = <<<END

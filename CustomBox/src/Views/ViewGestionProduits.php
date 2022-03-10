@@ -18,6 +18,13 @@ class ViewGestionProduits {
         $this->container = $c;
     }
 
+    /**
+     * Fonction render qui gère la vue de toutes les fonctionnalites produit
+     * @param int $code fonctionnalite a utiliser
+     * @param array $args
+     * @return string
+     * @throws \Exception
+     */
     public function render(int $code, array $args): string//2-3 pris 2 creation, 3 modif
     {
         $content = "";
@@ -42,6 +49,12 @@ class ViewGestionProduits {
         return $vue->render($content);
     }
 
+    /**
+     * Fonction qui gènere la vue du catalogue
+     */
+    /**
+     * Fonction qui gènere la vue du catalogue
+     */
     private function affichageProduit(array $args): string {
         $produit = $args[0];
         //affiche l'item
@@ -174,6 +187,10 @@ END;
 </section>';
     }
 
+        /**
+         * Fonction qui gènère la page html pour creer un produit
+         * @return string html
+         */
     private function affichageCreation(): string {
         return <<<END
             <!DOCTYPE html>
@@ -237,6 +254,10 @@ END;
         END;
     }
 
+    /**
+     * Fonction qui genere la vue html pour modifier un produit
+     * @return string html
+     */
     private function affichageModification(): string {
         return <<<END
             <!DOCTYPE html>

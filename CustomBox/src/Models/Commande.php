@@ -25,6 +25,8 @@ class Commande extends \Illuminate\Database\Eloquent\Model
         return $this->belongsTo('\CustomBox\Models\User', 'idUser');
     }
 
+    // METHODES
+
     public function boite() {
         return $this->belongsTo('\CustomBox\Models\Boite', 'idBoite');
     }

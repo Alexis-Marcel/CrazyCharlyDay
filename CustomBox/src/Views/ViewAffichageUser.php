@@ -18,6 +18,10 @@ class ViewAffichageUser
         $this->container = $c;
     }
 
+    /**
+     * Fonction qui retourne la page qui affiche tous les users
+     * @return string html
+     */
     public function affichageUser(): string
     {
         $content ="";

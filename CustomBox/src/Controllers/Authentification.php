@@ -60,6 +60,12 @@ class Authentification extends Controller
         return $response->withRedirect($this->container->router->pathFor('home'));
     }
 
+    /**
+     * Fonctionnalite qui verifie que les deux mdp donnés en parametre sont identiques
+     * @param $password
+     * @param $re_password
+     * @return bool
+     */
     public function checkMp($password,$re_password){
         $valide = true;
 
@@ -72,6 +78,11 @@ class Authentification extends Controller
 
     }
 
+    /**
+     * Fonctionnalité qui verifie l'email donné en parametre
+     * @param $email
+     * @return bool
+     */
     public function checkEmail($email){
         $valide = true;
          if(User::where('email', $email)->count() !== 0){
@@ -95,6 +106,12 @@ class Authentification extends Controller
 
     }
 
+    /**
+     * Fonction get pour afficher la page d'inscription
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
     public function getSignUp(Request $request, Response $response)
     {
         $vueSignIn = new ViewSign($this->container);
@@ -102,6 +119,12 @@ class Authentification extends Controller
         return $response;
     }
 
+    /**
+     * Fonction post pour effectuer l'inscription d'un user
+     * @param Request $request
+     * @param Response $response
+     * @return int|Response|\Slim\Http\Response
+     */
     public function postSignUp(Request $request,Response $response)
     {
         $email = filter_var($request->getParam('email'), FILTER_SANITIZE_STRING) ;
@@ -117,6 +140,12 @@ class Authentification extends Controller
         return $response->withRedirect($this->container->router->pathFor('home'));
     }
 
+    /**
+     * Fonctionnalité qui verifie la connection
+     * @param $email
+     * @param $password
+     * @return bool|void
+     */
     public function attempt($email,$password){
 
         $user = User::where('email', $email)->first();
@@ -131,12 +160,24 @@ class Authentification extends Controller
         }
     }
 
+    /**
+     * Fonction get qui affiche la page html pour editer son compte user
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
     public function getEditCompte(Request $request, Response $response){
         $vueSignIn = new ViewSign($this->container);
         $response->getBody()->write($vueSignIn->editCompte());
         return $response;
     }
 
+    /**
+     * Fonction post qui effctue la modification de compte
+     * @param Request $request
+     * @param Response $response
+     * @return int|Response|\Slim\Http\Response
+     */
     public function postEditCompte(Request $request, Response $response){
 
         $ancienpass = filter_var($request->getParam('ancienmdp'), FILTER_SANITIZE_STRING) ;

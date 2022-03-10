@@ -4,12 +4,8 @@ namespace CustomBox\Controllers;
 
 use CustomBox\Views\ViewAffichageUser;
 use CustomBox\Views\ViewRender;
-use Illuminate\Support\Facades\View;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\RequestInterface as Request;
-
-use CustomBox\Models\User;
-use CustomBox\Views\ViewSign;
 
 /**
  * Classe controlleur qui affiche les utilisateurs (admin)

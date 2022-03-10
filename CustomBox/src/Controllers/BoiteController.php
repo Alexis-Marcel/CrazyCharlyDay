@@ -2,7 +2,6 @@
 namespace CustomBox\Controllers;
 
 use CustomBox\Models\Boite;
-use CustomBox\Views\ViewGestionProduits;
 use CustomBox\Views\ViewRender;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;

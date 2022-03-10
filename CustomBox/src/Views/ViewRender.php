@@ -36,7 +36,7 @@ class ViewRender
     {
         $fonctionnaliteAdmin=<<<END
 
-END;
+    END;
         if(isset($_SESSION['user'])){
             $admin = User::where('id', $_SESSION['user'])->first();
             if($admin->admin==1){
@@ -55,8 +55,7 @@ END;
 
                                     </ul>
                                 </li>
-    
-END;
+        END;
 
             }
         }

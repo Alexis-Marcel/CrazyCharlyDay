@@ -2,9 +2,7 @@
 
 namespace CustomBox\Views;
 
-use CustomBox\Controllers\ProduitController;
 use CustomBox\Models\Produit;
-use CustomBox\Views\ViewRender;
 use Slim\Container;
 
 class ViewGestionCommande
@@ -19,6 +17,13 @@ class ViewGestionCommande
         $this->container = $c;
     }
 
+    /**
+     * Fonction render qui gère toutes les vues concernant la gestion d'une commande
+     * @param int $code
+     * @param array $args
+     * @return string
+     * @throws \Exception
+     */
     public function render(int $code, array $args):string
     {
         $content = "";
@@ -34,6 +39,10 @@ class ViewGestionCommande
         return $vue->render($content);
     }
 
+    /**
+     * Fonction d'affichage du panier
+     * @return string html
+     */
     private function affichagePanier() {
 
         $tab = null;
@@ -54,6 +63,11 @@ class ViewGestionCommande
         return $html;
     }
 
+    /**
+     * Methode de recherche d'un produit par id
+     * @param $id id produit
+     * @return mixed
+     */
     public function trouverProduit($id) {
         return Produit::find($id);
     }

@@ -67,6 +67,7 @@ class GestionCommandeController extends Controller{
                     Produit::find($prod['id'])->commandes()->save($commande);
                 }
                 $_SESSION["panier"] = [];
+                $response->withRedirect($this->container->router->pathFor('home'));
                 $response->getBody()->write($vue->afficherMessage("Votre commande a bien était validé!"));
             } else {
                 $response->getBody()->write($vue->afficherErreur("Trop d'article dans votre panier, aucunes boite ne peut supporter un tel poids..."));
