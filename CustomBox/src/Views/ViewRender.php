@@ -163,6 +163,11 @@ END;
         ");
     }
 
+    /**
+     * Genere un message d'information
+     * @param string $message message
+     * @return string html a afficher
+     */
     public function afficherMessage(string $message)
     {
         return $this->render("<div class='block-heading'>
