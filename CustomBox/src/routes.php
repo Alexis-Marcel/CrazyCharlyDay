@@ -23,6 +23,8 @@ $app->post('/modificationBoite', CustomBox\Controllers\ProduitController::class.
 
 $app->get('/signin', CustomBox\Controllers\Authentification::class . ':getSignIn')->setName('signin');
 
+$app->get('/panier', CustomBox\Controllers\GestionCommandeController::class.':afficherPanier')->setName("panier");
+$app->get('/ajouterPanier/{id}', CustomBox\Controllers\GestionCommandeController::class.':ajouterPanier')->setName("ajouterPanier");
 
 $app->get('/test', function (Request $rq, Response $rs, array $args): Response {
     $rs->getBody()->write("test");
