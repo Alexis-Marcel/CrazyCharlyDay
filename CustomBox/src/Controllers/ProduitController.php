@@ -177,7 +177,7 @@ class ProduitController extends Controller{
             }
         } catch (\Exception $e) {
             $vue = new ViewRender($this->container);
-            $rs->getBody()->write($vue->render($vue->afficherErreur("Erreur dans l'ajout d'un avis...".$e->getMessage()."<br>".$e->getTrace())));
+            $rs->getBody()->write($vue->afficherErreur("Erreur dans l'ajout d'un avis...".$e->getMessage()."<br>"));
         }
         return $rs;
     }
