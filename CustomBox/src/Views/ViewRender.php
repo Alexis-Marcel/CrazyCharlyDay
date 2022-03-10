@@ -159,9 +159,26 @@ END;
     public function afficherErreur(string $message)
     {
         return $this->render("<div class='block-heading'>
-                <h2 class='text-info'>Erreur</h2>
+                <div class='div-panier'>
+                    <div class='panier-titre'>
+                        <h2>Erreur</h2>
+                    </div>
+                        <p class='txt-err'>$message</p>
+                </div>
+            </div>");
+    }
+
+    /**
+     * Genere un message d'information
+     * @param string $message message
+     * @return string html a afficher
+     */
+    public function afficherMessage(string $message)
+    {
+        return $this->render("<div class='block-heading'>
+                <h2 class='text-info'>Message</h2>
                 <p>$message</p>
             </div>                
-");
+        ");
     }
 }
