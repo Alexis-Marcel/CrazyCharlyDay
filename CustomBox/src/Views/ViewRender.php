@@ -156,12 +156,11 @@ END;
      */
     public function afficherErreur(string $message)
     {
-        return <<<END
-            <div class="block-heading">
-                <h2 class="text-info">Erreur</h2>
+        return $this->render("<div class='block-heading'>
+                <h2 class='text-info'>Erreur</h2>
                 <p>$message</p>
-            </div>
-END;
+            </div>                
+");
     }
 
 }

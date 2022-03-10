@@ -4,6 +4,7 @@ namespace CustomBox\Controllers;
 use CustomBox\Models\Boite;
 use CustomBox\Models\Commande;
 use CustomBox\Models\Produit;
+use CustomBox\Views\ViewGestionProduits;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\RequestInterface as Request;
 
@@ -52,13 +53,17 @@ class GestionCommandeController extends Controller{
                     Produit::find($prod['id'])->commandes()->save($commande);
                 }
                 $_SESSION["panier"] = [];
+                $response->withRedirect($this->container->router->pathFor('home'));
             } else {
-                // lancer une alerte demande trop lourde
+                $vue = new ViewRender($this->container);
+                $vuePanier = new ViewGestionCommande($this->container);
+                $response->getBody()->write($vue->afficherErreur("Trop d'article dans votre panier, aucunes boite ne peut supporter un tel poids..."));
             }
         } else {
-            // lancer une alerte car non connecté
+            $vue = new ViewRender($this->container);
+            $response->getBody()->write($vue->afficherErreur("Il faut être connecter pour valider votre commande!"));
         }
-        return $response->withRedirect($this->container->router->pathFor('home'));
+        return $response;
     }
 
 }
