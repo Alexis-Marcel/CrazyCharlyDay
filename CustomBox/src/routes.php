@@ -29,6 +29,10 @@ $app->post('/signup', CustomBox\Controllers\Authentification::class . ':postSign
 
 $app->get('/signout', CustomBox\Controllers\Authentification::class . ':getSignOut')->setName('signout');
 
+$app->get('/editCompte', CustomBox\Controllers\Authentification::class . ':getEditCompte')->setName('editCompte');
+$app->post('/editCompte', CustomBox\Controllers\Authentification::class . ':postEditCompte');
+
+
 $app->get('/panier', CustomBox\Controllers\GestionCommandeController::class.':afficherPanier')->setName("panier");
 $app->get('/ajouterPanier/{id}', CustomBox\Controllers\GestionCommandeController::class.':ajouterPanier')->setName("ajouterPanier");
 $app->post('/validerCommande', CustomBox\Controllers\GestionCommandeController::class.':validerCommande')->setName("validerCommande");

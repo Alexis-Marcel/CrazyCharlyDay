@@ -94,4 +94,47 @@ class Authentification extends Controller
             return true;
         }
     }
+
+    public function getEditCompte(Request $request, Response $response){
+        $vueSignIn = new ViewSign($this->container);
+        $response->getBody()->write($vueSignIn->editCompte());
+        return $response;
+    }
+
+    public function postEditCompte(Request $request, Response $response){
+
+        $ancienpass = filter_var($request->getParam('ancienmdp'), FILTER_SANITIZE_STRING) ;
+        $nvpass = filter_var($request->getParam('nouveaumdp'), FILTER_SANITIZE_STRING) ;
+        $re_nvpass = filter_var($request->getParam('re_nouveaumdp'), FILTER_SANITIZE_STRING) ;
+
+        if(isset($_SESSION['user'])){
+            $user = User::where('id', $_SESSION['user'])->first();
+
+            if(password_verify($ancienpass, $user->mpd)) {
+
+                if($nvpass === $re_nvpass){
+                    $user->update([
+                        'mpd' => password_hash($nvpass,PASSWORD_DEFAULT)
+                    ]);
+                    return $response->withRedirect($this->container->router->pathFor('home'));
+
+
+                }
+                else {
+                    return $response->withRedirect($this->container->router->pathFor('editCompte'));
+                }
+            }
+            else {
+                echo $ancienpass;
+            }
+        }
+        else {
+            return $response->withRedirect($this->container->router->pathFor('home'));
+        }
+
+
+
+
+
+    }
 }
