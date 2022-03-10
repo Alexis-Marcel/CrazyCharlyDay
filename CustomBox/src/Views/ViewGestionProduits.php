@@ -3,6 +3,7 @@
 namespace CustomBox\Views;
 
 use CustomBox\Models\Categorie;
+use CustomBox\Models\User;
 use CustomBox\Views\ViewRender;
 use http\Encoding\Stream\Inflate;
 use Slim\Container;
@@ -93,10 +94,11 @@ END;
 END;
 
         $lAvis = $produit->avis;
-        foreach ($lAvis as $unAvis) {
+        foreach ($lAvis as $unAvis){
+            $auteur = User::query()->where('id', '=',$unAvis->auteur )->first();
             $avisHtml .= <<<END
 <div class="commentaire-div">
-    <h4>Avis de {$unAvis->auteur->email} note : {$unAvis->note}/5</h4>
+    <h4>Avis de {$auteur->email} note : {$unAvis->note}/5</h4>
     <p>{$unAvis->commentaire}</p> 
     <p>Postee le : {$unAvis->date}</p>
 </div>
