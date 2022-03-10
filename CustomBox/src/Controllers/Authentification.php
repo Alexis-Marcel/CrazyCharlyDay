@@ -24,9 +24,8 @@ class Authentification extends Controller
         $password = filter_var($request->getParam('pass'), FILTER_SANITIZE_STRING) ;
         $re_password = filter_var($request->getParam('re_pass'), FILTER_SANITIZE_STRING) ;
 
-        if($password != $re_password){
+        if(!$this->check($email,$password,$re_password)){
             return $response->withRedirect($this->container->router->pathFor('signin'));
-
         }
 
         $user = User::create([
@@ -37,6 +36,20 @@ class Authentification extends Controller
         $this->attempt($email,$password);
 
         return $response->withRedirect($this->container->router->pathFor('home'));
+    }
+
+    public function check($email,$password,$re_password){
+        $valide = true;
+
+        if($password !== $re_password){
+            $valide = false;
+        }
+        else if(User::where('email', $email)->count() !== 0){
+            $valide = false;
+        }
+
+        return $valide;
+
     }
 
     public function getSignOut(Request $request, Response $response){
