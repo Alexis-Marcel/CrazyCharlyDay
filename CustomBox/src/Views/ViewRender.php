@@ -47,8 +47,6 @@ class ViewRender
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i></a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="{$this->container->router->pathFor("editCompte")}">Modifier mot de passe</a></li>
-                                        <li><hr class="dropdown-divider" /></li>
                                         <li><a class="dropdown-item" href="{$this->container->router->pathFor("signout")}">Déconnexion</a></li>
                                     </ul>
                                 <li class="nav-item dropdown">
@@ -108,7 +106,7 @@ class ViewRender
                                 
                 <!-- Footer-->
                 <footer class="py-5 bg-dark">
-                    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+                    <div class="container"><img src="{$this->container->router->pathFor("home")}assets/logoblanc.png" class="centrerImage"></div>
                 </footer>
                 <!-- Bootstrap core JS-->
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

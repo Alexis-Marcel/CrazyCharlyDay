@@ -103,6 +103,12 @@ body {
 .li-panier:hover{
   font-size: 120%;
 }
+.centrerImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #bouton-panier{
   margin: 3%;
 }
