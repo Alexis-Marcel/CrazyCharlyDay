@@ -2,6 +2,8 @@
 
 namespace CustomBox\Views;
 
+use CustomBox\Controllers\ProduitController;
+use CustomBox\Models\Produit;
 use CustomBox\Views\ViewRender;
 use Slim\Container;
 
@@ -32,19 +34,28 @@ class ViewGestionCommande
         return $vue->render($content);
     }
 
-    public function affichagePanier() {
+    private function affichagePanier() {
 
-        $tab = $_SESSION["panier"];
-
-
-        return <<<END
-
-        <h2>Votre panier:</h2>
-        <ul>
-        </ul>
-       
-
-END;
-
+        $tab = null;
+        if (isset($_SESSION["panier"])) {
+            $tab = $_SESSION["panier"];
+        }
+        $html = "<h2>Votre panier:</h2><ul>";
+        if ($tab!=null){
+            foreach ($tab as $value) {
+                $html .= "<li>" . $this->trouverProduit($value["id"])->titre . "</li>";
+            }
+            $html.= "<form class='card-footer p-4 pt-0 border-top-0 bg-transparent' action='{$this->container->router->pathFor("validerCommande")}' method='post'> 
+            <button type='submit' class='btn btn-primary'>Valider la commande</button>
+        </form>";
+        } else {
+            $html.= "Votre panier est vide, retournez à l'accueil pour le compléter";
+        }
+        return $html;
     }
+
+    public function trouverProduit($id) {
+        return Produit::find($id);
+    }
+
 }

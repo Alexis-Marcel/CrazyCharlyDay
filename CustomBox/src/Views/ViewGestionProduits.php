@@ -73,9 +73,9 @@ END;
             </div>
         </div>
         <!-- Product actions-->
-        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="">Ajouter au panier</a></div>
-        </div>
+        <form class="card-footer p-4 pt-0 border-top-0 bg-transparent" action="{$this->container->router->pathFor('ajouterPanier', ['id' => $prod->id])}" method="get"> 
+            <button type="submit" class="btn btn-primary">Ajout au panier</button>
+        </form>
     </div>
 </div>
 END;
