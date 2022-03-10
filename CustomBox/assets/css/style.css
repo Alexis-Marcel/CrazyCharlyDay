@@ -7864,6 +7864,7 @@ textarea.form-control-lg {
 .bg-transparent {
   --bs-bg-opacity: 1;
   background-color: transparent !important;
+  text-align: center;
 }
 
 .bg-opacity-10 {
