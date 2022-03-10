@@ -23,7 +23,7 @@ class Categorie extends \Illuminate\Database\Eloquent\Model
 
     public function produits()
     {
-        return $this->hasMany('\mywishlist\modele\Produit', 'categorie');
+        return $this->hasMany('\CustomBox\Models\Produit', 'categorie');
     }
 
 }
