@@ -26,7 +26,7 @@ class BoiteController extends Controller{
     }
 
     public function modifierBoite(Request $request, Response $response, $parameters):Response{
-        $vue=new ViewGestionProduits($this->container);
+        $vue=new ViewGestionBoite($this->container);
         $vueRender = new ViewRender($this->container);
         if ($request->isPost()){
             $taille = filter_var( $request->getParsedBody()['titre'], FILTER_SANITIZE_STRING);
@@ -34,6 +34,8 @@ class BoiteController extends Controller{
 
             $parameters['taille']=$taille;
             $parameters['poidsmax']=$poidsmax;
+
+            $boite = $this->recupererBoite($parameters["idBoite"]);
             $this->modifierBoiteBDD($parameters);
             $response = $response->withRedirect($this->container->router->pathFor('home'));
         } else {
@@ -59,6 +61,13 @@ class BoiteController extends Controller{
         $res=$b->save();
         if (!$res){
             throw new \Exception("Sauvegarde de l'item a échoué");
+        }
+    }
+    private function recupererBoite(int $id): ?Boite{
+        try {
+            return Boite::query()->where('id', '=', $id)->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            return null;
         }
     }
 }

@@ -50,7 +50,9 @@ class ProduitController extends Controller{
             $parameters["categorie"]=$categorie;
             $parameters["poids"]=$poids;
 
-            $this->modifierProduitBDD($parameters);
+            $produit = $this->recupererProduit($parameters["idProduit"]);
+
+            $this->modifierProduitBDD($produit,$parameters);
 
 
             $response = $response->withRedirect($this->container->router->pathFor('home'));
@@ -85,24 +87,14 @@ class ProduitController extends Controller{
             throw new \Exception("Sauvegarde de l'item a échoué");
         }
     }
-
-/*
-    public function modifierProduit(Request $request, Response $response, $parameters)
-    {
-        $titre = filter_var( $request->getParsedBody()['titre'], FILTER_SANITIZE_STRING);
-        $description = filter_var( $request->getParsedBody()['description'], FILTER_SANITIZE_STRING);
-        $categorie = filter_var( $request->getParsedBody()['request'], FILTER_SANITIZE_STRING);
-        $poids = filter_var( $request->getParsedBody()['poids'], FILTER_SANITIZE_NUMBER_FLOAT);
-
-        $parameters["titre"]=$titre;
-        $parameters["description"]=$description;
-        $parameters["categorie"]=$categorie;
-        $parameters["poids"]=$poids;
-
-        $this->modifierProduitBDD($parameters);
-        return $response;
+    private function recupererProduit(int $id): ?Produit{
+        try {
+            return Produit::query()->where('id', '=', $id)->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            return null;
+        }
     }
-*/
+
 
     /**
      * Generere l'affichage du catalogue
